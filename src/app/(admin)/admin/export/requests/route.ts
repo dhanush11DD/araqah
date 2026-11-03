@@ -1,4 +1,5 @@
 import { getSessionUser } from "@/lib/auth";
+import { adminEnabled } from "@/lib/features";
 import { logActivity } from "@/lib/activity";
 import { optionNames } from "@/lib/options";
 import { allRequests, type RequestFilter } from "@/lib/store";
@@ -11,6 +12,7 @@ const cell = (v: unknown) => {
 };
 
 export async function GET(request: Request) {
+  if (!adminEnabled()) return new Response(null, { status: 404 });
   const user = await getSessionUser();
   if (!user) return new Response("Unauthorized", { status: 401 });
   const p = new URL(request.url).searchParams;

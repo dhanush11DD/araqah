@@ -506,74 +506,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <span style={{ display: "inline-flex", width: "30px", height: "30px", borderRadius: "50%", background: "#FFFFFF", border: "2px solid #E0D8C8", boxSizing: "border-box" }}></span></div>
                 <div style={{ flexGrow: "1", display: "flex", flexDirection: "column", gap: "8px", paddingTop: "6px", minHeight: "30px" }}>
                   <span style={{ display: "block", width: "34%", height: "10px", borderRadius: "5px", background: "#ECE6DA" }}></span></div>
-                <span style={{ flex: "0 0 auto", display: "block", width: "40px", height: "7px", borderRadius: "4px", background: "#F1ECE2", marginTop: "6px" }}></span></li></ol>{" "}</div>{" "}</div>{" "}</section>{" "}
-      <section id="reviews" style={{ padding: "48px 0" }}>{" "}
-        <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", gap: "48px" }}>{" "}
-          <div style={{ flex: "1 1 300px", minWidth: "0", display: "flex", flexDirection: "column" }}>{" "}
-            <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"Testimonials"}</p>
-            <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "380px" }}>{"What families say about us"}</h2>{" "}
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", marginTop: "28px" }}>
-              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "56px", fontWeight: "600", lineHeight: "1", color: "#141414" }}>{"4.9"}</p>
-              <div>
-                <div style={{ display: "flex", gap: "2px" }} role="img" aria-label="5 stars">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#141414" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#141414" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#141414" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#141414" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#141414" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg></div>
-                <p style={{ margin: "6px 0 0", fontSize: "14px", fontWeight: "600", color: "#5C5A55" }}>{"Average rating on Google"}</p></div></div>{" "}
-            <div style={{ display: "flex", gap: "10px", marginTop: "28px" }}>{" "}
-              <button type="button" aria-label="Previous review" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "50%", border: "1.5px solid #141414", background: "transparent", color: "#141414", cursor: "pointer" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>{" "}
-              <button type="button" aria-label="Next review" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "50%", border: "0", background: "#141414", color: "#FFFFFF", cursor: "pointer" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>{" "}</div>{" "}</div>{" "}
-          <div style={{ flex: "2.2 1 620px", minWidth: "0", display: "flex", flexDirection: "column", gap: "32px" }}>{" "}
-            <figure style={{ margin: "0", position: "relative", padding: "36px 40px", borderRadius: "26px", background: "#F5C518" }}>{" "}
-              <span style={{ position: "absolute", right: "32px", top: "18px", fontFamily: "'Fraunces', Georgia, serif", fontSize: "140px", lineHeight: "1", color: "rgba(20,20,20,0.12)" }} aria-hidden="true">{"“"}</span>{" "}
-              <blockquote style={{ position: "relative", margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "25px", fontWeight: "500", lineHeight: "1.35", color: "#141414", maxWidth: "680px" }}>{"Araqah found us a housemaid from the Philippines exactly as promised. I could see every stage online, so I never had to chase anyone."}</blockquote>{" "}
-              <figcaption style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "26px" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "50%", background: "#141414", color: "#F5C518", fontSize: "18px", fontWeight: "800" }}>{"N"}</span>
-                <div>
-                  <p style={{ margin: "0", fontSize: "16px", fontWeight: "800", color: "#141414" }}>{"Noura, Riyadh"}</p>
-                  <p style={{ margin: "2px 0 0", fontSize: "13px", fontWeight: "600", color: "#4A3D00" }}>{"Hired a Housemaid"}</p></div></figcaption>{" "}</figure>{" "}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "32px" }}>{" "}
-              <figure style={{ margin: "0", paddingTop: "22px", borderTop: "2px solid #141414" }}>
-                <div style={{ display: "flex", gap: "2px" }} role="img" aria-label="5 stars">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg></div>
-                <blockquote style={{ margin: "12px 0 0", fontSize: "16px", lineHeight: "1.65", color: "#141414" }}>{"“The driver arrived on time and the team handled all the paperwork. Prices were clear from day one.”"}</blockquote>
-                <figcaption style={{ marginTop: "14px", fontSize: "14px", fontWeight: "800", color: "#141414" }}>{"Abdullah, Riyadh "}
-                  <span style={{ fontWeight: "600", color: "#5C5A55" }}>{"· Private Driver"}</span></figcaption></figure>{" "}
-              <figure style={{ margin: "0", paddingTop: "22px", borderTop: "2px solid #141414" }}>
-                <div style={{ display: "flex", gap: "2px" }} role="img" aria-label="5 stars">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5C518" aria-hidden="true">
-                    <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"></path></svg></div>
-                <blockquote style={{ margin: "12px 0 0", fontSize: "16px", lineHeight: "1.65", color: "#141414" }}>{"“We needed a caregiver for my father. They sent us several CVs and helped us choose with real patience.”"}</blockquote>
-                <figcaption style={{ marginTop: "14px", fontSize: "14px", fontWeight: "800", color: "#141414" }}>{"Reem, Al Kharj "}
-                  <span style={{ fontWeight: "600", color: "#5C5A55" }}>{"· Caregiver"}</span></figcaption></figure>{" "}</div></div></div></section>{" "}
+                <span style={{ flex: "0 0 auto", display: "block", width: "40px", height: "7px", borderRadius: "4px", background: "#F1ECE2", marginTop: "6px" }}></span></li></ol>{" "}</div>{" "}</div>{" "}</section>{" "}{" "}
       <section id="faq" style={{ padding: "48px 0", background: "#F2ECDF" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", gap: "56px" }}>{" "}
           <div style={{ flex: "1 1 320px", minWidth: "0" }}>{" "}
@@ -760,8 +693,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                       <path d="M12 7.5V12l3 2"></path></svg></span>
                   <div style={{ minWidth: "0" }}>
                     <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Working hours"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
-                      <span className="ph">{"[Sunday–Thursday, 9:00 AM – 9:00 PM]"}</span></p></div></div>{" "}</div>{" "}
+                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>{"Sunday–Thursday, 9:00 AM – 9:00 PM"}</p></div></div>{" "}</div>{" "}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "24px" }}>{" "}
                 <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -847,13 +779,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                 <bdi dir="ltr">{"@araqah.1"}</bdi></p>{" "}</div>{" "}</div>{" "}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "16px", marginTop: "28px", paddingTop: "18px", borderTop: "1px solid #2B2A27", fontSize: "13px", color: "#A9A397" }}>{" "}
             <p style={{ margin: "0" }}>{"Licence: "}
-              <bdi dir="ltr">{"SAU100000011004"}</bdi>{" · CR: "}
-              <span className="ph">{"[XXXXXXXXXX]"}</span>{" · VAT No.: "}
-              <span className="ph">{"[3XXXXXXXXXXXXX3]"}</span></p>{" "}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "18px" }}>
-              <a href="#" style={{ color: "#CFCAC0" }}>{"Privacy Policy"}</a>
-              <a href="#" style={{ color: "#CFCAC0" }}>{"Terms & Conditions"}</a>
-              <a href="#" style={{ color: "#CFCAC0" }}>{"Refund Policy"}</a></div>{" "}</div>{" "}
+              <bdi dir="ltr">{"SAU100000011004"}</bdi></p>{" "}{" "}</div>{" "}
           <p style={{ margin: "14px 0 0", fontSize: "13px", color: "#A9A397" }}>{"© 2026 Araqah Recruitment Office. All rights reserved."}</p>{" "}</div>{" "}</footer>{" "}</div>
   );
 }

@@ -1,6 +1,7 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { adminEnabled } from "./features";
 import { logActivity } from "./activity";
 import { hashPassword, signToken, verifyPassword, verifyToken } from "./crypto";
 import { getDb, now, parseDate, type Row } from "./db";
@@ -23,6 +24,7 @@ const toUser = (r: Row): AdminUser => ({
 
 /** On a fresh database, creates the first admin from ADMIN_EMAIL and ADMIN_PASSWORD. */
 export async function ensureFirstAdmin() {
+  if (!adminEnabled()) return;
   const db = await getDb();
   if (Number((await db.get("SELECT COUNT(*) AS c FROM admin_users"))?.c ?? 0) > 0) return;
   const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
@@ -42,6 +44,7 @@ export async function hasAnyAdmin() {
 }
 
 export async function getSessionUser(): Promise<AdminUser | null> {
+  if (!adminEnabled()) return null;
   const token = verifyToken<{ uid: number; exp: number }>((await cookies()).get(COOKIE)?.value);
   if (!token || token.exp < Date.now()) return null;
   const row = await (await getDb()).get("SELECT * FROM admin_users WHERE id = ? AND is_active = 1", [token.uid]);
@@ -50,6 +53,7 @@ export async function getSessionUser(): Promise<AdminUser | null> {
 
 /** Use at the top of every admin page and server action. */
 export async function requireAdmin(options: { adminOnly?: boolean } = {}): Promise<AdminUser> {
+  if (!adminEnabled()) notFound();
   const user = await getSessionUser();
   if (!user) redirect("/admin/login");
   if (options.adminOnly && user.role !== "admin") redirect("/admin?denied=1");
@@ -57,6 +61,7 @@ export async function requireAdmin(options: { adminOnly?: boolean } = {}): Promi
 }
 
 export async function signIn(email: string, password: string, ip: string): Promise<string | null> {
+  if (!adminEnabled()) return "The dashboard is switched off.";
   await ensureFirstAdmin();
   const address = email.trim().toLowerCase();
   if (!allow(`login:ip:${ip}`, 10, 15 * 60_000) || !allow(`login:email:${address}`, 6, 15 * 60_000)) {
@@ -74,7 +79,7 @@ export async function signIn(email: string, password: string, ip: string): Promi
   (await cookies()).set(COOKIE, signToken({ uid: Number(row.id), exp: Date.now() + SESSION_HOURS * 3600_000 }), {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV !== "development",
     path: "/",
     maxAge: SESSION_HOURS * 3600,
   });

@@ -1,25 +1,29 @@
 import "server-only";
 import { createCipheriv, createDecipheriv, createHash, createHmac, randomBytes, scrypt as scryptCb, timingSafeEqual } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { promisify } from "node:util";
+import { databasePath } from "./db";
 
 const scrypt = promisify(scryptCb) as (password: string, salt: Buffer, keylen: number) => Promise<Buffer>;
 
 let cachedSecret: string | undefined;
 
-/** SESSION_SECRET signs admin sessions and encrypts stored secrets (SMTP password, Moyasar keys). */
+/**
+ * SESSION_SECRET signs admin sessions and encrypts stored secrets (SMTP password, Moyasar keys).
+ * If it is not set, a random one is created once and kept beside the database file, so it lives
+ * and is backed up (or lost) together with the data it protects.
+ */
 function secret() {
   if (cachedSecret) return cachedSecret;
   const fromEnv = process.env.SESSION_SECRET;
   if (fromEnv && fromEnv.length >= 16) return (cachedSecret = fromEnv);
-  if (process.env.NODE_ENV === "production") throw new Error("SESSION_SECRET must be set (at least 16 characters)");
-  // Development: keep one random secret in a local file so sessions survive restarts.
-  const file = ".data/dev-secret";
+  const file = join(dirname(databasePath()), "session-secret");
   if (!existsSync(file)) {
-    mkdirSync(".data", { recursive: true });
+    mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, randomBytes(32).toString("hex"), { mode: 0o600 });
   }
-  return (cachedSecret = readFileSync(file, "utf8"));
+  return (cachedSecret = readFileSync(file, "utf8").trim());
 }
 
 const key = () => createHash("sha256").update(`araqah-settings:${secret()}`).digest();

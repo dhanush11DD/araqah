@@ -46,6 +46,11 @@ TEXT_INPUTS = [("fullName", "name"), ("phone", "tel"), ("city", "address-level2"
 SELECTS = ["serviceType", "profession", "nationality"]
 RADIO_VALUES = ["call", "email"]
 
+# Content that is in the design but not real yet. Left out of the page until the client supplies
+# the real thing; set a switch to True and run `npm run convert-design` to bring it back.
+SHOW_REVIEWS = False       # the "Testimonials" section and its "4.9 on Google" rating (invented in the mock-up)
+SHOW_POLICY_LINKS = False  # footer Privacy / Terms / Refund links: no policy pages exist yet
+
 VOID = {"img", "input", "br", "hr", "meta", "link", "source", "area", "col", "embed", "wbr"}
 NO_WS = {"select", "table", "tbody", "thead", "tfoot", "tr", "colgroup", "ol", "ul", "svg", "fieldset"}
 
@@ -239,6 +244,13 @@ class Converter:
 
         if tag == "section" and "id" in attrs:
             self.section = attrs["id"]
+            if attrs["id"] == "reviews" and not SHOW_REVIEWS:
+                return ""
+
+        if not SHOW_POLICY_LINKS and tag == "div":
+            links = [c for c in node.children if not isinstance(c, str)]
+            if len(links) == 3 and all(c.tag == "a" and dict(c.attrs).get("href") == "#" for c in links):
+                return ""
 
         if tag == "img":
             src = attrs.get("src", "")

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { adminEnabled } from "@/lib/features";
 import SubmitButton from "@/components/admin/SubmitButton";
 import { Flash } from "@/components/admin/ui";
 import { getSessionUser, hasAnyAdmin } from "@/lib/auth";
@@ -10,6 +11,7 @@ export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  if (!adminEnabled()) notFound();
   if (await getSessionUser()) redirect("/admin");
   const sp = await searchParams;
   const ready = await hasAnyAdmin();

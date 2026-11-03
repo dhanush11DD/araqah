@@ -1,6 +1,6 @@
 import "server-only";
 import { mkdirSync } from "node:fs";
-import mysql, { type Pool, type PoolConnection, type ResultSetHeader } from "mysql2/promise";
+import { dirname } from "node:path";
 
 export type Row = Record<string, unknown>;
 type Param = string | number | null;
@@ -12,11 +12,10 @@ export interface Queryable {
 }
 
 export interface Db extends Queryable {
-  dialect: "mysql" | "sqlite";
   transaction<T>(fn: (tx: Queryable) => Promise<T>): Promise<T>;
 }
 
-/** "YYYY-MM-DD HH:MM:SS" in UTC, the format both MySQL and SQLite store. */
+/** "YYYY-MM-DD HH:MM:SS" in UTC, the format stored in every DATETIME column. */
 export function now(date = new Date()) {
   return date.toISOString().slice(0, 19).replace("T", " ");
 }
@@ -31,10 +30,8 @@ export function parseDate(value: unknown): Date | null {
 
 type Table = { name: string; columns: string[]; indexes?: string[][] };
 
-const ID = { mysql: "INT NOT NULL AUTO_INCREMENT PRIMARY KEY", sqlite: "INTEGER PRIMARY KEY AUTOINCREMENT" };
-
-function tables(d: Db["dialect"]): Table[] {
-  const id = `id ${ID[d]}`;
+function tables(): Table[] {
+  const id = "id INTEGER PRIMARY KEY AUTOINCREMENT";
   return [
     {
       name: "admin_users",
@@ -162,65 +159,36 @@ function tables(d: Db["dialect"]): Table[] {
 }
 
 async function migrate(db: Db) {
-  for (const t of tables(db.dialect)) {
-    const tail = db.dialect === "mysql" ? ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" : ")";
-    const mysqlIndexes = db.dialect === "mysql" ? (t.indexes ?? []).map((c) => `, INDEX idx_${t.name}_${c.join("_")} (${c.join(", ")})`).join("") : "";
-    await db.run(`CREATE TABLE IF NOT EXISTS ${t.name} (${t.columns.join(", ")}${mysqlIndexes}${tail}`);
-    if (db.dialect === "sqlite") {
-      for (const c of t.indexes ?? []) {
-        await db.run(`CREATE INDEX IF NOT EXISTS idx_${t.name}_${c.join("_")} ON ${t.name} (${c.join(", ")})`);
-      }
+  for (const t of tables()) {
+    await db.run(`CREATE TABLE IF NOT EXISTS ${t.name} (${t.columns.join(", ")})`);
+    for (const c of t.indexes ?? []) {
+      await db.run(`CREATE INDEX IF NOT EXISTS idx_${t.name}_${c.join("_")} ON ${t.name} (${c.join(", ")})`);
     }
   }
 }
 
-// ---------------------------------------------------------------- drivers
+// ---------------------------------------------------------------- database file
 
-function mysqlDb(url: string): Db {
-  const pool: Pool = mysql.createPool({ uri: url, connectionLimit: 8, timezone: "Z", dateStrings: true, charset: "utf8mb4" });
-  const over = (q: Pool | PoolConnection): Queryable => ({
-    async all(sql, params = []) {
-      const [rows] = await q.query(sql, params);
-      return rows as Row[];
-    },
-    async get(sql, params = []) {
-      const [rows] = await q.query(sql, params);
-      return ((rows as Row[])[0] as Row | undefined) ?? null;
-    },
-    async run(sql, params = []) {
-      const [res] = await q.query(sql, params);
-      const header = res as ResultSetHeader;
-      return { insertId: Number(header.insertId ?? 0), changes: Number(header.affectedRows ?? 0) };
-    },
-  });
-  return {
-    dialect: "mysql",
-    ...over(pool),
-    async transaction(fn) {
-      const conn = await pool.getConnection();
-      try {
-        await conn.beginTransaction();
-        const result = await fn(over(conn));
-        await conn.commit();
-        return result;
-      } catch (error) {
-        await conn.rollback();
-        throw error;
-      } finally {
-        conn.release();
-      }
-    },
-  };
-}
+/**
+ * The whole site's data lives in one SQLite file. Set DATABASE_PATH to keep it somewhere that
+ * survives redeploys (and back it up); the default is .data/araqah.sqlite next to the app.
+ */
+export const databasePath = () => process.env.DATABASE_PATH || ".data/araqah.sqlite";
 
-async function sqliteDb(): Promise<Db> {
-  // Development only: a local file so the admin works without a MySQL server.
-  const { DatabaseSync } = await import("node:sqlite");
-  mkdirSync(".data", { recursive: true });
-  const file = new DatabaseSync(".data/dev.sqlite");
-  file.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;");
+async function openDatabase(): Promise<Db> {
+  // webpackIgnore keeps this a real runtime import of Node's built-in SQLite (Node 22.5 or newer).
+  const { DatabaseSync } = await import(/* webpackIgnore: true */ "node:sqlite");
+  const path = databasePath();
+  mkdirSync(dirname(path), { recursive: true });
+  const file = new DatabaseSync(path);
+  file.exec("PRAGMA busy_timeout = 5000; PRAGMA foreign_keys = ON;");
+  try {
+    file.exec("PRAGMA journal_mode = WAL;");
+  } catch {
+    // Some network drives cannot do WAL; the default journal still works.
+  }
   const clean = (params: Param[]) => params.map((p) => (p === undefined ? null : p));
-  const q: Queryable = {
+  const raw: Queryable = {
     async all(sql, params = []) {
       return file.prepare(sql).all(...clean(params)) as Row[];
     },
@@ -232,20 +200,32 @@ async function sqliteDb(): Promise<Db> {
       return { insertId: Number(res.lastInsertRowid), changes: Number(res.changes) };
     },
   };
+
+  // One connection serves every visitor, so work runs one job at a time. That keeps a
+  // transaction from being interleaved with another request's statements.
+  let queue: Promise<unknown> = Promise.resolve();
+  const exclusive = <T,>(job: () => Promise<T>): Promise<T> => {
+    const result = queue.then(job, job);
+    queue = result.catch(() => undefined);
+    return result;
+  };
+
   return {
-    dialect: "sqlite",
-    ...q,
-    async transaction(fn) {
-      file.exec("BEGIN");
-      try {
-        const result = await fn(q);
-        file.exec("COMMIT");
-        return result;
-      } catch (error) {
-        file.exec("ROLLBACK");
-        throw error;
-      }
-    },
+    all: (sql, params) => exclusive(() => raw.all(sql, params)),
+    get: (sql, params) => exclusive(() => raw.get(sql, params)),
+    run: (sql, params) => exclusive(() => raw.run(sql, params)),
+    transaction: (fn) =>
+      exclusive(async () => {
+        file.exec("BEGIN IMMEDIATE");
+        try {
+          const result = await fn(raw);
+          file.exec("COMMIT");
+          return result;
+        } catch (error) {
+          file.exec("ROLLBACK");
+          throw error;
+        }
+      }),
   };
 }
 
@@ -253,10 +233,7 @@ const globalDb = globalThis as unknown as { araqahDb?: Promise<Db> };
 
 export function getDb(): Promise<Db> {
   globalDb.araqahDb ??= (async () => {
-    const url = process.env.DATABASE_URL;
-    if (!url && process.env.NODE_ENV === "production") throw new Error("DATABASE_URL is not set");
-    if (!url) console.warn("DATABASE_URL is not set: using the local SQLite file .data/dev.sqlite (development only).");
-    const db = url ? mysqlDb(url) : await sqliteDb();
+    const db = await openDatabase();
     await migrate(db);
     return db;
   })().catch((error) => {

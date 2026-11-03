@@ -1,5 +1,5 @@
 import Landing from "@/components/landing/Landing";
-import { getFormChoices } from "@/lib/options";
+import { defaultChoices, getFormChoices } from "@/lib/options";
 import type { Locale } from "@/lib/requests";
 
 // The form choices come from the database, so the page is rendered per request.
@@ -31,7 +31,11 @@ function jsonLd(locale: Locale) {
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale as Locale;
-  const choices = await getFormChoices(locale);
+  // If the database is down the page still shows; submitting the form then reports a clear error.
+  const choices = await getFormChoices(locale).catch((error) => {
+    console.error("Could not load form options from the database:", error);
+    return defaultChoices(locale);
+  });
   return (
     <>
       <script

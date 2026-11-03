@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { adminEnabled } from "@/lib/features";
 import "./admin.css";
 
 export const metadata: Metadata = { title: { default: "Araqah Admin", template: "%s · Araqah Admin" }, robots: { index: false, follow: false } };
@@ -9,7 +7,6 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 // The admin is a separate root layout from the public site: its own fonts, no translation prompt.
 export default function AdminRoot({ children }: { children: ReactNode }) {
-  if (!adminEnabled()) notFound();
   return (
     <html lang="en" dir="ltr" translate="no">
       <head>

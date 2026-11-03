@@ -86,6 +86,12 @@ export async function getFormChoices(locale: Locale): Promise<FormChoices> {
   return { serviceType: pick("service"), profession: pick("profession"), nationality: pick("nationality") };
 }
 
+/** The design's own choices, used to keep the landing page up if the database cannot be reached. */
+export function defaultChoices(locale: Locale): FormChoices {
+  const pick = (kind: OptionKind) => DEFAULTS[kind].map(([code, en, ar]) => ({ code, label: locale === "ar" ? ar : en }));
+  return { serviceType: pick("service"), profession: pick("profession"), nationality: pick("nationality") };
+}
+
 export async function isActiveOption(kind: OptionKind, code: string) {
   await seed();
   const db = await getDb();

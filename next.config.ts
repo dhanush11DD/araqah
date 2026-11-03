@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // One self-contained server.js for GoDaddy Node.js Hosting.
   output: "standalone",
   poweredByHeader: false,
+  // Only matters in development mode: lets GoDaddy's preview address load Next's /_next/* files
+  // (otherwise Next warns "Cross origin request detected"). Production is unaffected.
+  allowedDevOrigins: ["*.airoapp.ai", "*.preview.c40.airoapp.ai"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
