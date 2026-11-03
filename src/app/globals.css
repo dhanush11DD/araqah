@@ -1,0 +1,53 @@
+/* Global rules from the design files' <helmet>; everything else is inline in the components. */
+body{margin:0;background:#FAF7F0}
+html{scroll-behavior:smooth}
+html[dir="rtl"]{direction:rtl}
+a{color:#141414}a:hover{color:#000000;opacity:0.85}
+.ph{background:#FFEDA6;color:#141414;border-radius:4px;padding:0 4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid #F5C518;outline-offset:2px}
+input::placeholder,textarea::placeholder{color:#8A857A}
+
+/* Anchored sections land below the sticky header. */
+section[id],#request{scroll-margin-top:96px}
+
+/* The design shows the selected contact option with a dark border. */
+.radio-opt:has(input:checked){border-color:#141414 !important}
+
+button:disabled{opacity:0.6;cursor:progress !important}
+
+@media (max-width:600px){
+  .araqah-modal{padding:24px !important}
+}
+
+/* Compact header below 1080px, where the designed one-row header no longer fits.
+   Bar: logo, language link, menu button. The menu opens the nav, phone and CTA below it.
+   Keep the width in step with MENU_HIDDEN_FROM in Landing.tsx. */
+.site-menu-btn{display:none}
+@media (max-width:1079px){
+  .site-bar{display:grid !important;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"logo lang menu" "nav nav nav" "tel tel tel" "cta cta cta";align-items:center;gap:0 12px !important;min-height:68px !important;padding-top:8px !important;padding-bottom:8px !important}
+  .site-bar>a[href="#top"]{grid-area:logo;justify-self:start}
+  .site-actions{display:contents !important}
+  .site-actions>a[lang]{grid-area:lang}
+  .site-menu-btn{grid-area:menu;display:inline-flex}
+  .site-nav{grid-area:nav}
+  .site-actions>a[href^="tel:"]{grid-area:tel}
+  .site-actions>a[href="#request"]{grid-area:cta}
+  .site-header[data-menu="closed"] .site-nav,
+  .site-header[data-menu="closed"] .site-actions>a[href^="tel:"],
+  .site-header[data-menu="closed"] .site-actions>a[href="#request"]{display:none !important}
+  .site-header[data-menu="open"] .site-nav{flex-direction:column;align-items:stretch !important;gap:0 !important;margin-top:8px;border-top:1px solid #E4DCCB;font-size:16px !important}
+  .site-nav a{padding:14px 0 !important;border-bottom:1px solid #E4DCCB}
+  /* The designed active-link underline, kept under the word rather than the full-width row. */
+  .site-nav a[style*="box-shadow"]{box-shadow:none !important;text-decoration:underline 2px #F5C518;text-underline-offset:8px}
+  .site-actions>a[href^="tel:"]{padding:14px 0 !important;font-size:16px !important}
+  .site-actions>a[href="#request"]{margin:8px 0 12px;min-height:50px !important;font-size:15px !important}
+}
+
+/* Phone-only fixes where the desktop design is wider than the screen. Desktop is untouched. */
+@media (max-width:480px){
+  /* Mission & vision cards: a 380px column minimum is wider than a phone. */
+  [style*="minmax(380px, 1fr)"]{grid-template-columns:minmax(0,1fr) !important}
+  /* Track illustration header: let the placeholder bars shrink so the status pill stays visible. */
+  #track [style*="padding:22px 28px"] div{min-width:0}
+  #track [style*="padding:22px 28px"] span[style*="height:8px"]{max-width:100%}
+}

@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Araqah Landing Page Content</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 14mm 18mm 14mm;
+    @bottom-left { content: "Araqah Recruitment Office · Landing Page Content v1.0"; font: 8pt -apple-system, "Helvetica Neue", sans-serif; color: #888; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font: 8pt -apple-system, "Helvetica Neue", sans-serif; color: #888; }
+  }
+  @page :first { @bottom-left { content: none; } @bottom-right { content: none; } }
+
+  :root { --ink: #1d1d1f; --muted: #666; --line: #dcdcdc; --soft: #f5f5f4; --accent: #8a6d1f; --ph: #fff4cc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); font: 9.6pt/1.5 -apple-system, "Helvetica Neue", "Geeza Pro", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ar, [dir="rtl"] { font-family: "SF Arabic", "Geeza Pro", -apple-system, sans-serif; direction: rtl; text-align: right; line-height: 1.75; }
+
+  /* Cover */
+  .cover { height: 255mm; display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; }
+  .cover .top { border-top: 4px solid var(--ink); padding-top: 10mm; }
+  .cover .kicker { font-size: 9pt; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .cover h1 { font-size: 30pt; line-height: 1.15; margin: 6mm 0 3mm; letter-spacing: -.01em; }
+  .cover .h1-ar { font-size: 24pt; margin: 0 0 8mm; font-weight: 700; }
+  .cover .lede { font-size: 11pt; color: #444; max-width: 140mm; }
+  .meta { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  .meta td { padding: 2.2mm 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .meta td:first-child { color: var(--muted); width: 42mm; }
+  .legend { margin-top: 6mm; padding: 4mm 5mm; background: var(--soft); border-radius: 2mm; font-size: 8.8pt; }
+
+  /* TOC */
+  .toc { page-break-after: always; }
+  .toc ol { columns: 2; column-gap: 10mm; padding-left: 5mm; margin: 0; }
+  .toc li { padding: 1.4mm 0; break-inside: avoid; }
+  .toc li span { color: var(--muted); font-family: "SF Arabic", "Geeza Pro", sans-serif; }
+
+  /* Sections */
+  h2 { font-size: 15pt; margin: 0; letter-spacing: -.005em; }
+  .sec { margin: 0 0 9mm; }
+  .sec-head, .purpose, h3 { break-after: avoid; }
+  table.copy thead { display: table-header-group; }
+  bdi[dir="ltr"] { unicode-bidi: isolate; direction: ltr; white-space: nowrap; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 2mm; margin-bottom: 3mm; display: flex; align-items: baseline; gap: 3mm; }
+  .sec-head .num { font-size: 10pt; color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .sec-head .h-ar { margin-inline-start: auto; font-size: 13pt; font-weight: 700; font-family: "SF Arabic", "Geeza Pro", sans-serif; }
+  .purpose { color: var(--muted); font-size: 8.8pt; margin: 0 0 3mm; }
+  h3 { font-size: 10.5pt; margin: 5mm 0 2mm; }
+
+  table.copy { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.copy th { text-align: left; font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 1.5mm 2.5mm; border-bottom: 1px solid var(--line); background: var(--soft); }
+  table.copy th.ar { text-align: right; text-transform: none; letter-spacing: 0; font-size: 9pt; }
+  table.copy td { padding: 2.2mm 2.5mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.copy tr { break-inside: avoid; }
+  table.copy col.el { width: 19%; }
+  table.copy col.lang { width: 40.5%; }
+  td.el { font-size: 8.3pt; color: var(--muted); font-weight: 600; }
+  td.big { font-size: 13pt; font-weight: 700; line-height: 1.3; }
+  td.big.ar { font-size: 14pt; line-height: 1.6; }
+  .ph { background: var(--ph); padding: 0 1mm; border-radius: 1mm; }
+  .note { font-size: 8.5pt; color: #5a4a12; background: #fbf6e6; border-inline-start: 3px solid var(--accent); padding: 2.5mm 3.5mm; margin: 3mm 0; break-inside: avoid; }
+  .tag { display: inline-block; font-size: 7.5pt; border: 1px solid var(--line); border-radius: 10px; padding: 0 2mm; color: var(--muted); margin-inline-start: 1mm; vertical-align: middle; }
+  ul.check { margin: 0; padding-inline-start: 5mm; }
+  ul.check li { margin: .8mm 0; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="top">
+    <div class="kicker">Website Copy Deck · Phase 1</div>
+    <h1>Araqah Recruitment Office<br>Landing Page Content</h1>
+    <div class="h1-ar ar" dir="rtl">عراقة للاستقدام — محتوى الصفحة الرئيسية</div>
+    <p class="lede">Section-by-section copy in English and Arabic for the single-page landing site at araqah.com: the hero, about, services, nationalities, process, packages, tracking, payments, FAQ, contact and footer, plus SEO tags and key microcopy.</p>
+  </div>
+  <div>
+    <table class="meta">
+      <tr><td>Client</td><td>Araqah Recruitment Office (عراقة للاستقدام), Riyadh</td></tr>
+      <tr><td>Document</td><td>Landing page content, v1.0 draft for client review</td></tr>
+      <tr><td>Date</td><td>31 October 2026</td></tr>
+      <tr><td>Languages</td><td>Arabic (primary, RTL) · English (LTR)</td></tr>
+      <tr><td>Scope</td><td>Content only. Layout, colours and visuals come in a separate design phase.</td></tr>
+      <tr><td>Sources</td><td>Public company information: GCC Domestic listing, Uganda EEMIS record, X / Instagram / Facebook profiles</td></tr>
+    </table>
+    <div class="legend">
+      <strong>How to read this document.</strong> Each section shows its purpose, then a table of <em>Element · English · Arabic</em>. Text marked <span class="ph">[like this]</span> is a placeholder or a fact the client must confirm before launch. Headline alternatives are given where the tone is a judgement call. Choose one per language.
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOC ============ -->
+<div class="toc">
+  <div class="sec-head"><h2>Page Structure</h2><span class="h-ar">هيكل الصفحة</span></div>
+  <p class="purpose">The landing page sections in scroll order. Each one is a block on the single page and has its own anchor link in the navigation.</p>
+  <ol>
+    <li>SEO &amp; Social Tags <span>· بيانات محركات البحث</span></li>
+    <li>Header &amp; Navigation <span>· الترويسة والقائمة</span></li>
+    <li>Hero <span>· القسم الرئيسي</span></li>
+    <li>Trust Bar <span>· شريط الثقة</span></li>
+    <li>About Araqah <span>· من نحن</span></li>
+    <li>Services <span>· خدماتنا</span></li>
+    <li>Nationalities <span>· الجنسيات المتاحة</span></li>
+    <li>How It Works <span>· كيف تعمل الخدمة</span></li>
+    <li>Packages <span>· باقات الاستقدام</span></li>
+    <li>Why Araqah <span>· لماذا عراقة</span></li>
+    <li>Track Your Request <span>· تتبّع طلبك</span></li>
+    <li>Payment Methods <span>· طرق الدفع</span></li>
+    <li>Testimonials <span>· آراء العملاء</span></li>
+    <li>FAQ <span>· الأسئلة الشائعة</span></li>
+    <li>Final Call to Action <span>· دعوة ختامية</span></li>
+    <li>Contact <span>· تواصل معنا</span></li>
+    <li>Footer <span>· التذييل</span></li>
+    <li>Global Microcopy <span>· نصوص مساندة</span></li>
+    <li>Client Confirmation Checklist <span>· بنود للتأكيد</span></li>
+  </ol>
+</div>
+
+<!-- ============ 1. SEO ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">01</span><h2>SEO &amp; Social Tags</h2><span class="h-ar">بيانات محركات البحث</span></div>
+  <p class="purpose">Not visible on the page. These are used by Google, WhatsApp link previews and social shares. Titles stay under ~60 characters and descriptions under ~155.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Meta title</td><td>Araqah Recruitment | Domestic Workers in Riyadh</td><td class="ar">عراقة للاستقدام | استقدام عمالة منزلية في الرياض</td></tr>
+    <tr><td class="el">Meta description</td><td>Musaned-licensed recruitment office in Riyadh. Housemaids, drivers, nannies, cooks and caregivers from 10 countries. Track your request online and pay securely.</td><td class="ar">مكتب استقدام مرخّص من مساند في الرياض. عاملات منزليات وسائقون ومربيات وطهاة ومقدّمو رعاية من 10 دول، مع تتبّع إلكتروني للطلب ودفع آمن.</td></tr>
+    <tr><td class="el">Social share title</td><td>Araqah Recruitment: trusted domestic workers for your family</td><td class="ar">عراقة للاستقدام: عمالة منزلية موثوقة لأسرتك</td></tr>
+    <tr><td class="el">Social share text</td><td>Request a worker in under a minute and follow every step until arrival.</td><td class="ar">قدّم طلبك في أقل من دقيقة، وتابع كل مرحلة حتى الوصول.</td></tr>
+    <tr><td class="el">Target keywords</td><td>domestic worker recruitment Riyadh, housemaid recruitment, private driver recruitment, Musaned office</td><td class="ar">استقدام عمالة منزلية الرياض، استقدام عاملة منزلية، استقدام سائق خاص، مكتب استقدام مساند، نقل خدمات عاملة</td></tr>
+  </table>
+</section>
+
+<!-- ============ 2. Header ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">02</span><h2>Header &amp; Navigation</h2><span class="h-ar">الترويسة والقائمة</span></div>
+  <p class="purpose">Sticky top bar. Each menu link scrolls to its section. The primary button sits at the end of the bar.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Menu links</td><td>Home · About · Services · Packages · Track Request · Payment Methods · Contact</td><td class="ar">الرئيسية · من نحن · خدماتنا · الباقات · تتبّع الطلب · طرق الدفع · تواصل معنا</td></tr>
+    <tr><td class="el">Primary button</td><td>Request a Worker</td><td class="ar">قدّم طلب استقدام</td></tr>
+    <tr><td class="el">Language switch</td><td>العربية</td><td class="ar">English</td></tr>
+    <tr><td class="el">Phone link</td><td>011 266 2266</td><td class="ar"><bdi dir="ltr">011 266 2266</bdi></td></tr>
+  </table>
+</section>
+
+<!-- ============ 3. Hero ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">03</span><h2>Hero</h2><span class="h-ar">القسم الرئيسي</span></div>
+  <p class="purpose">The first screen. It must say who Araqah is, why to trust them and what to do next: three actions, each one click away.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Eyebrow</td><td>Musaned-licensed recruitment office · Riyadh</td><td class="ar">مكتب استقدام مرخّص من مساند · الرياض</td></tr>
+    <tr><td class="el">Headline<br><span class="tag">Option A · recommended</span></td><td class="big">Trusted domestic workers, recruited with care for your family</td><td class="big ar">عمالة منزلية موثوقة… نستقدمها بعناية لراحة أسرتك</td></tr>
+    <tr><td class="el">Headline<br><span class="tag">Option B</span></td><td class="big">Your home deserves the right hands</td><td class="big ar">بيتك يستحق الأيادي الأمينة</td></tr>
+    <tr><td class="el">Headline<br><span class="tag">Option C</span></td><td class="big">From request to arrival, we handle it all</td><td class="big ar">من الطلب حتى الوصول… نتولّى كل شيء</td></tr>
+    <tr><td class="el">Sub-headline</td><td>From choosing the profession and nationality to your worker's arrival in the Kingdom, the Araqah team is with you at every step. Follow your request online at any time.</td><td class="ar">من اختيار المهنة والجنسية حتى وصول العامل إلى المملكة، يرافقك فريق عراقة في كل خطوة، مع إمكانية متابعة طلبك إلكترونيًا في أي وقت.</td></tr>
+    <tr><td class="el">Primary button</td><td>Request a Worker</td><td class="ar">قدّم طلب استقدام</td></tr>
+    <tr><td class="el">Secondary button</td><td>Browse Packages</td><td class="ar">تصفّح الباقات</td></tr>
+    <tr><td class="el">Text link</td><td>Already applied? Track your request →</td><td class="ar">قدّمت طلبك؟ تتبّع حالته ←</td></tr>
+    <tr><td class="el">Trust chips (4)</td><td>Licensed by Musaned · 10 nationalities · Online request tracking · Secure payment with mada &amp; Apple Pay</td><td class="ar">مرخّص من مساند · 10 جنسيات · تتبّع إلكتروني للطلب · دفع آمن عبر مدى و Apple Pay</td></tr>
+    <tr><td class="el">Image alt text</td><td>A Saudi family at home, relaxed and cared for</td><td class="ar">أسرة سعودية في منزلها تنعم بالراحة والرعاية</td></tr>
+  </table>
+</section>
+
+<!-- ============ 4. Trust bar ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">04</span><h2>Trust Bar</h2><span class="h-ar">شريط الثقة</span></div>
+  <p class="purpose">A slim strip of figures under the hero. Use only real, verifiable numbers. Remove any item the client cannot confirm.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Figure</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Experience</td><td><span class="ph">[X]+</span> years of experience</td><td class="ar"><span class="ph">[X]+</span> سنوات من الخبرة</td></tr>
+    <tr><td class="el">Families served</td><td><span class="ph">[X,XXX]+</span> families served</td><td class="ar"><span class="ph">[X,XXX]+</span> أسرة خدمناها</td></tr>
+    <tr><td class="el">Nationalities</td><td>10 source countries</td><td class="ar">10 دول إرسال</td></tr>
+    <tr><td class="el">Professions</td><td>7 domestic professions</td><td class="ar">7 مهن منزلية</td></tr>
+  </table>
+</section>
+
+<!-- ============ 5. About ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">05</span><h2>About Araqah</h2><span class="h-ar">من نحن</span></div>
+  <p class="purpose">Builds credibility: licensed, local, specialised. Short paragraphs, then three cards for mission, vision and values.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Section label</td><td>About us</td><td class="ar">من نحن</td></tr>
+    <tr><td class="el">Heading</td><td class="big">Deep-rooted trust, modern service</td><td class="big ar">عراقة في الثقة… وحداثة في الخدمة</td></tr>
+    <tr><td class="el">Paragraph 1</td><td>Araqah Recruitment Office is a Saudi recruitment office licensed by the Musaned platform and based in Hittin, Riyadh. We specialise in recruiting trained domestic workers for families across the Kingdom.</td><td class="ar">عراقة للاستقدام مكتب سعودي مرخّص من منصة مساند، مقرّه حي حطين في مدينة الرياض، ومتخصص في استقدام العمالة المنزلية المدرّبة للأسر في المملكة.</td></tr>
+    <tr><td class="el">Paragraph 2</td><td>We believe a family's comfort starts with choosing the right person. That is why we work with accredited partner agencies in 10 countries to bring you qualified workers through clear, regulated procedures at competitive prices.</td><td class="ar">نؤمن أن راحة الأسرة تبدأ باختيار الشخص المناسب؛ لذلك نعمل مع مكاتب إرسال معتمدة في 10 دول لنقدّم لك عمالة مؤهلة، بإجراءات نظامية واضحة وأسعار تنافسية.</td></tr>
+    <tr><td class="el">Paragraph 3</td><td>Our name, <em>Araqah</em>, means heritage and deep roots. It reflects how we work: honest dealings, commitments kept, and a team that stays with you after the contract is signed.</td><td class="ar">واسمنا «عراقة» يعبّر عن قيمنا: أصالة في التعامل، والتزام بالوعود، وفريق يبقى معك حتى بعد توقيع العقد.</td></tr>
+    <tr><td class="el">Card: Mission</td><td><strong>Our mission</strong><br>To give every family a reliable domestic worker through a transparent, fast and fully regulated process.</td><td class="ar"><strong>رسالتنا</strong><br>أن نوفّر لكل أسرة عمالة منزلية موثوقة، عبر إجراءات شفافة وسريعة ونظامية بالكامل.</td></tr>
+    <tr><td class="el">Card: Vision</td><td><strong>Our vision</strong><br>To be the recruitment office families in the Kingdom trust and recommend first.</td><td class="ar"><strong>رؤيتنا</strong><br>أن نكون مكتب الاستقدام الأول الذي تثق به الأسر في المملكة وتوصي به.</td></tr>
+    <tr><td class="el">Card: Values</td><td><strong>Our values</strong><br>Transparency · Commitment · Speed · Respect for workers and families</td><td class="ar"><strong>قيمنا</strong><br>الشفافية · الالتزام · السرعة · احترام العامل والأسرة</td></tr>
+    <tr><td class="el">Licence line</td><td>Licensed by Musaned · Licence ID SAU100000011004</td><td class="ar">مرخّص من منصة مساند · رقم الترخيص SAU100000011004</td></tr>
+  </table>
+  <div class="note">Mission, vision and values are draft wording for the client to approve or replace. Confirm the year Araqah was founded so the "years of experience" figure is accurate.</div>
+</section>
+
+<!-- ============ 6. Services ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">06</span><h2>Services</h2><span class="h-ar">خدماتنا</span></div>
+  <p class="purpose">Two groups: worker professions (7 cards) and recruitment services (4 cards). Each card has a title, one line of description and a "Request" link that opens the request form with that profession already selected.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Section label</td><td>Our services</td><td class="ar">خدماتنا</td></tr>
+    <tr><td class="el">Heading</td><td class="big">The right person for every need in your home</td><td class="big ar">الشخص المناسب لكل احتياج في منزلك</td></tr>
+    <tr><td class="el">Intro</td><td>Choose the profession you need, and we will find a trained, qualified candidate who suits your family.</td><td class="ar">اختر المهنة التي تحتاجها، وسنرشّح لك عمالة مدرّبة ومؤهلة تناسب أسرتك.</td></tr>
+  </table>
+
+  <h3>A. Worker professions · المهن المنزلية</h3>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Card</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">1 · Housemaid</td><td><strong>Housemaid</strong><br>Daily cleaning, tidying and upkeep to keep your home comfortable.</td><td class="ar"><strong>عاملة منزلية</strong><br>تنظيف وترتيب يومي وعناية بتفاصيل المنزل لراحة أسرتك.</td></tr>
+    <tr><td class="el">2 · Male worker</td><td><strong>Male Domestic Worker</strong><br>Household, garden and general maintenance tasks.</td><td class="ar"><strong>عامل منزلي</strong><br>أعمال المنزل والحديقة والمهام العامة.</td></tr>
+    <tr><td class="el">3 · Driver</td><td><strong>Private Driver</strong><br>Safe, punctual trips for school runs, errands and family outings.</td><td class="ar"><strong>سائق خاص</strong><br>تنقّلات آمنة ومنضبطة للمدارس والمشاوير اليومية والعائلية.</td></tr>
+    <tr><td class="el">4 · Nanny</td><td><strong>Nanny</strong><br>Caring attention for your children and their daily routine.</td><td class="ar"><strong>مربية أطفال</strong><br>رعاية واهتمام بأطفالك ومتابعة روتينهم اليومي.</td></tr>
+    <tr><td class="el">5 · Caregiver</td><td><strong>Caregiver</strong><br>Patient support for elderly family members with their daily needs.</td><td class="ar"><strong>مقدّمة رعاية</strong><br>رعاية كبار السن ومساعدتهم في احتياجاتهم اليومية بصبر واهتمام.</td></tr>
+    <tr><td class="el">6 · Cook</td><td><strong>Cook</strong><br>Home-cooked meals prepared the way your family likes them.</td><td class="ar"><strong>طبّاخ / طبّاخة</strong><br>إعداد وجبات منزلية تناسب ذوق أسرتك.</td></tr>
+    <tr><td class="el">7 · Special needs</td><td><strong>Special Needs Caregiver</strong><br>Dedicated, specialised care with compassion and patience.</td><td class="ar"><strong>رعاية ذوي الاحتياجات الخاصة</strong><br>رعاية متخصصة ومخصّصة بكل رحمة وصبر.</td></tr>
+    <tr><td class="el">Card link</td><td>Request this service →</td><td class="ar">اطلب هذه الخدمة ←</td></tr>
+  </table>
+
+  <h3>B. Recruitment services · خدمات الاستقدام</h3>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Card</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">1 · Recruitment</td><td><strong>Worker Recruitment</strong><br>Full recruitment through Musaned, from candidate selection to arrival.</td><td class="ar"><strong>استقدام العمالة</strong><br>استقدام كامل عبر منصة مساند، من اختيار المرشح حتى وصوله.</td></tr>
+    <tr><td class="el">2 · Transfer</td><td><strong>Worker Transfer</strong><br>Transfer a domestic worker's services to your name through official procedures.</td><td class="ar"><strong>نقل الخدمات</strong><br>نقل خدمات العامل المنزلي إليك بإجراءات نظامية وسريعة.</td></tr>
+    <tr><td class="el">3 · Maarofa</td><td><strong>Named Worker (Maarofa)</strong><br>Already know the worker you want? We handle the procedures to recruit them by name.</td><td class="ar"><strong>خدمة «معروفة»</strong><br>لديك عامل تعرفه بالاسم؟ نتولّى إجراءات استقدامه لك.</td></tr>
+    <tr><td class="el">4 · Contracts</td><td><strong>Contract Authentication</strong><br>Authenticate the employment contract through Musaned to protect both parties' rights.</td><td class="ar"><strong>توثيق العقود</strong><br>توثيق عقد العمل عبر مساند لحفظ حقوق الطرفين.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 7. Nationalities ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">07</span><h2>Nationalities</h2><span class="h-ar">الجنسيات المتاحة</span></div>
+  <p class="purpose">A grid of 10 flags and names. Clicking a nationality opens Packages filtered by that nationality.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Choose from 10 nationalities</td><td class="big ar">اختر من بين 10 جنسيات</td></tr>
+    <tr><td class="el">Intro</td><td>We work with accredited partner agencies in each country to bring you trained workers.</td><td class="ar">نتعاون مع مكاتب إرسال معتمدة في كل دولة لنستقدم لك عمالة مدرّبة.</td></tr>
+    <tr><td class="el">List</td><td>Philippines · Indonesia · Sri Lanka · India · Nepal · Bangladesh · Kenya · Uganda · Ethiopia · Ghana</td><td class="ar">الفلبين · إندونيسيا · سريلانكا · الهند · نيبال · بنغلاديش · كينيا · أوغندا · إثيوبيا · غانا</td></tr>
+    <tr><td class="el">Footnote</td><td>Availability, prices and timelines vary by nationality and current regulations.</td><td class="ar">تختلف الإتاحة والأسعار ومدة الاستقدام حسب الجنسية والأنظمة المعمول بها.</td></tr>
+  </table>
+  <div class="note">Confirm with the client which nationalities are open for recruitment right now. Some countries' recruitment to Saudi Arabia is restricted or suspended from time to time. The admin panel can switch each nationality on or off.</div>
+</section>
+
+<!-- ============ 8. How it works ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">08</span><h2>How It Works</h2><span class="h-ar">كيف تعمل الخدمة</span></div>
+  <p class="purpose">Four numbered steps. They show the process is simple and reduce hesitation before the customer applies.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Four simple steps to your worker</td><td class="big ar">أربع خطوات بسيطة حتى وصول العامل</td></tr>
+    <tr><td class="el">Step 1</td><td><strong>Choose your service</strong><br>Pick the profession and nationality, or browse our ready packages.</td><td class="ar"><strong>اختر الخدمة</strong><br>حدّد المهنة والجنسية المناسبة، أو تصفّح باقاتنا الجاهزة.</td></tr>
+    <tr><td class="el">Step 2</td><td><strong>Apply or pay online</strong><br>Submit your request in under a minute and receive a tracking number instantly.</td><td class="ar"><strong>قدّم طلبك أو ادفع إلكترونيًا</strong><br>أرسل طلبك في أقل من دقيقة، واحصل على رقم تتبّع فوري.</td></tr>
+    <tr><td class="el">Step 3</td><td><strong>We find the right candidate</strong><br>Our team shortlists suitable CVs and completes all official procedures.</td><td class="ar"><strong>نختار لك المرشح الأنسب</strong><br>يرشّح فريقنا السير الذاتية المناسبة ويُنهي جميع الإجراءات النظامية.</td></tr>
+    <tr><td class="el">Step 4</td><td><strong>Track until arrival</strong><br>Follow every stage online until your worker arrives.</td><td class="ar"><strong>تابع حتى الوصول</strong><br>تابع كل مرحلة إلكترونيًا حتى وصول العامل إليك.</td></tr>
+    <tr><td class="el">Button</td><td>Start your request</td><td class="ar">ابدأ طلبك الآن</td></tr>
+  </table>
+</section>
+
+<!-- ============ 9. Packages ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">09</span><h2>Packages</h2><span class="h-ar">باقات الاستقدام</span></div>
+  <p class="purpose">Package cards come from the database, and the admin sets names and prices. This section fixes the heading, the card labels and the empty state. Each package is either full payment or deposit.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Clear packages, no hidden fees</td><td class="big ar">باقات واضحة… بلا رسوم مخفية</td></tr>
+    <tr><td class="el">Intro</td><td>Choose a package and complete your booking online in minutes, with secure payment.</td><td class="ar">اختر الباقة المناسبة وأكمل حجزك إلكترونيًا خلال دقائق، مع دفع آمن.</td></tr>
+    <tr><td class="el">Filters</td><td>Profession · Nationality · All</td><td class="ar">المهنة · الجنسية · الكل</td></tr>
+    <tr><td class="el">Card: price label</td><td>Total price</td><td class="ar">السعر الإجمالي</td></tr>
+    <tr><td class="el">Card: deposit</td><td>Pay a deposit of <span class="ph">[X]</span> SAR now, with the remaining <span class="ph">[Y]</span> SAR paid later</td><td class="ar">ادفع عربونًا <span class="ph">[X]</span> ريال الآن، والمتبقي <span class="ph">[Y]</span> ريال لاحقًا</td></tr>
+    <tr><td class="el">Card: VAT note</td><td>Price <span class="ph">[includes / excludes]</span> VAT</td><td class="ar">السعر <span class="ph">[شامل / غير شامل]</span> ضريبة القيمة المضافة</td></tr>
+    <tr><td class="el">Card: buttons</td><td>Buy now · Details</td><td class="ar">اشترِ الآن · التفاصيل</td></tr>
+    <tr><td class="el">Badge</td><td>Most requested</td><td class="ar">الأكثر طلبًا</td></tr>
+    <tr><td class="el">Empty state</td><td>No packages match your selection. Send us a request and we will offer you the best option.</td><td class="ar">لا توجد باقات مطابقة لاختيارك حاليًا. أرسل طلبك وسنقترح عليك الخيار الأنسب.</td></tr>
+    <tr><td class="el">Section link</td><td>View all packages →</td><td class="ar">عرض جميع الباقات ←</td></tr>
+  </table>
+  <div class="note">The client must supply the package list: name, profession, nationality, total price, payment type (full or deposit), deposit amount, what is included, and VAT treatment.</div>
+</section>
+
+<!-- ============ 10. Why Araqah ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">10</span><h2>Why Araqah</h2><span class="h-ar">لماذا عراقة</span></div>
+  <p class="purpose">Six short reasons, each with an icon. Every claim must be something Araqah actually delivers.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Why families choose Araqah</td><td class="big ar">لماذا تختار الأسر عراقة؟</td></tr>
+    <tr><td class="el">1</td><td><strong>Licensed &amp; regulated</strong><br>A Musaned-licensed office. Every contract is official and documented.</td><td class="ar"><strong>مرخّص ونظامي</strong><br>مكتب مرخّص من مساند، وجميع العقود نظامية وموثّقة.</td></tr>
+    <tr><td class="el">2</td><td><strong>Track every step</strong><br>Know exactly where your request is, from submission to arrival.</td><td class="ar"><strong>تتبّع كل خطوة</strong><br>اعرف أين وصل طلبك بدقة، من التقديم حتى الوصول.</td></tr>
+    <tr><td class="el">3</td><td><strong>Transparent pricing</strong><br>Clear prices up front, with no surprises.</td><td class="ar"><strong>أسعار واضحة</strong><br>أسعار معلنة منذ البداية بلا مفاجآت.</td></tr>
+    <tr><td class="el">4</td><td><strong>Secure online payment</strong><br>Pay with mada, Apple Pay or card through a secure, certified gateway.</td><td class="ar"><strong>دفع إلكتروني آمن</strong><br>ادفع عبر مدى أو Apple Pay أو البطاقة من خلال بوابة دفع آمنة ومعتمدة.</td></tr>
+    <tr><td class="el">5</td><td><strong>Wide choice</strong><br>7 professions and 10 nationalities to match your family's needs.</td><td class="ar"><strong>خيارات واسعة</strong><br>7 مهن و10 جنسيات تناسب احتياجات أسرتك.</td></tr>
+    <tr><td class="el">6</td><td><strong>A team that responds</strong><br>Reach us by call or WhatsApp. We are here before, during and after recruitment.</td><td class="ar"><strong>فريق قريب منك</strong><br>تواصل معنا اتصالًا أو واتساب، فنحن معك قبل الاستقدام وأثناءه وبعده.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 11. Track ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">11</span><h2>Track Your Request</h2><span class="h-ar">تتبّع طلبك</span></div>
+  <p class="purpose">An inline tracking box on the landing page. Results open on the dedicated tracking page with the 8-stage timeline.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Where is your request now?</td><td class="big ar">أين وصل طلبك الآن؟</td></tr>
+    <tr><td class="el">Intro</td><td>Enter your request number and mobile number to see the latest status of your request.</td><td class="ar">أدخل رقم الطلب ورقم الجوال لمعرفة آخر مستجدات طلبك.</td></tr>
+    <tr><td class="el">Field 1</td><td>Request number (e.g. ARQ-26-4F8P2M)</td><td class="ar">رقم الطلب (مثال: <bdi dir="ltr">ARQ-26-4F8P2M</bdi>)</td></tr>
+    <tr><td class="el">Field 2</td><td>Mobile number (05XXXXXXXX)</td><td class="ar">رقم الجوال (<bdi dir="ltr">05XXXXXXXX</bdi>)</td></tr>
+    <tr><td class="el">Button</td><td>Track request</td><td class="ar">تتبّع الطلب</td></tr>
+    <tr><td class="el">Not found</td><td>We couldn't find a request with these details. Check the number and try again, or contact us on WhatsApp.</td><td class="ar">لم نعثر على طلب بهذه البيانات. تأكّد من الرقم وحاول مرة أخرى، أو تواصل معنا عبر واتساب.</td></tr>
+  </table>
+
+  <h3>Tracking stages · مراحل الطلب</h3>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Stage</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">1</td><td><strong>Request Received</strong>: we have your request and will contact you soon.</td><td class="ar"><strong>تم استلام الطلب</strong>: وصلنا طلبك وسنتواصل معك قريبًا.</td></tr>
+    <tr><td class="el">2</td><td><strong>Under Processing</strong>: our team is reviewing your request.</td><td class="ar"><strong>تحت الإجراء</strong>: يعمل فريقنا على دراسة طلبك.</td></tr>
+    <tr><td class="el">3</td><td><strong>Candidate Selected</strong>: a suitable candidate has been chosen.</td><td class="ar"><strong>تم اختيار المرشح</strong>: تم اختيار المرشح المناسب.</td></tr>
+    <tr><td class="el">4</td><td><strong>Processing Formalities</strong>: visa and official procedures are in progress.</td><td class="ar"><strong>جاري إنهاء الإجراءات</strong>: نعمل على التأشيرة والإجراءات النظامية.</td></tr>
+    <tr><td class="el">5</td><td><strong>Flight Booked</strong>: the travel date has been confirmed.</td><td class="ar"><strong>تم حجز الرحلة</strong>: تم تأكيد موعد السفر.</td></tr>
+    <tr><td class="el">6</td><td><strong>Departed Origin Country</strong>: the worker is on the way.</td><td class="ar"><strong>غادر بلد الإرسال</strong>: العامل في الطريق إليك.</td></tr>
+    <tr><td class="el">7</td><td><strong>Awaiting Arrival</strong>: arrival is expected soon.</td><td class="ar"><strong>في انتظار الوصول</strong>: الوصول متوقّع قريبًا.</td></tr>
+    <tr><td class="el">8</td><td><strong>Arrived</strong>: welcome! The worker has arrived.</td><td class="ar"><strong>وصل</strong>: أهلًا بالوصول! وصل العامل بحمد الله.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 12. Payment ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">12</span><h2>Payment Methods</h2><span class="h-ar">طرق الدفع</span></div>
+  <p class="purpose">A strip of payment logos with a short reassurance line. It links to the full Payment Methods page, which lists IBANs and SADAD details.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Pay the way that suits you</td><td class="big ar">ادفع بالطريقة التي تناسبك</td></tr>
+    <tr><td class="el">Intro</td><td>Secure, encrypted online payments through an approved Saudi payment gateway.</td><td class="ar">مدفوعات إلكترونية آمنة ومشفّرة عبر بوابة دفع سعودية معتمدة.</td></tr>
+    <tr><td class="el">Methods</td><td>mada · Apple Pay · Visa · Mastercard · STC Pay · Bank transfer · SADAD</td><td class="ar">مدى · Apple Pay · فيزا · ماستركارد · STC Pay · التحويل البنكي · سداد</td></tr>
+    <tr><td class="el">Payment-link note</td><td>Received a payment link from our team by WhatsApp or email? You can pay securely through it.</td><td class="ar">وصلك رابط دفع من فريقنا عبر واتساب أو البريد؟ يمكنك السداد من خلاله بأمان.</td></tr>
+    <tr><td class="el">Link</td><td>View payment details &amp; bank accounts →</td><td class="ar">تفاصيل الدفع والحسابات البنكية ←</td></tr>
+  </table>
+</section>
+
+<!-- ============ 13. Testimonials ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">13</span><h2>Testimonials</h2><span class="h-ar">آراء العملاء</span></div>
+  <p class="purpose">Social proof. <strong>Use only genuine reviews</strong>, published with the customer's permission (first name + city is enough). Hide this section until at least 3 real reviews are available.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">What families say about us</td><td class="big ar">ماذا تقول الأسر عنّا</td></tr>
+    <tr><td class="el">Review card</td><td><span class="ph">[Real customer quote]</span><br>— <span class="ph">[First name]</span>, <span class="ph">[City]</span></td><td class="ar"><span class="ph">[رأي عميل حقيقي]</span><br>— <span class="ph">[الاسم الأول]</span>، <span class="ph">[المدينة]</span></td></tr>
+    <tr><td class="el">Rating line (optional)</td><td>Rated <span class="ph">[4.X]</span>/5 on Google</td><td class="ar">تقييم <span class="ph">[4.X]</span>/5 على Google</td></tr>
+  </table>
+</section>
+
+<!-- ============ 14. FAQ ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">14</span><h2>FAQ</h2><span class="h-ar">الأسئلة الشائعة</span></div>
+  <p class="purpose">An accordion of questions. It answers objections before customers have to call, and is marked up as FAQ data for Google. Answers with placeholders need the client's real figures.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>#</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Frequently asked questions</td><td class="big ar">الأسئلة الشائعة</td></tr>
+    <tr><td class="el">Q1</td><td><strong>How long does recruitment take?</strong><br>It depends on the nationality and profession, usually between <span class="ph">[X]</span> and <span class="ph">[Y]</span> days. You can follow every stage on the tracking page.</td><td class="ar"><strong>كم تستغرق مدة الاستقدام؟</strong><br>تختلف المدة حسب الجنسية والمهنة، وتتراوح عادةً بين <span class="ph">[X]</span> و<span class="ph">[Y]</span> يومًا، ويمكنك متابعة كل مرحلة عبر صفحة تتبّع الطلب.</td></tr>
+    <tr><td class="el">Q2</td><td><strong>What documents do I need?</strong><br><span class="ph">[A copy of your national ID or Iqama and your Musaned account details. Confirm the full list with the client.]</span> Our team will guide you through everything.</td><td class="ar"><strong>ما المستندات المطلوبة؟</strong><br><span class="ph">[صورة الهوية الوطنية أو الإقامة وبيانات حسابك في منصة مساند. يؤكَّد مع العميل.]</span> وسيرشدك فريقنا خطوة بخطوة.</td></tr>
+    <tr><td class="el">Q3</td><td><strong>Can I choose the worker myself?</strong><br>Yes. We send you CVs of suitable candidates so you can choose. If you already know a specific worker, use our Maarofa (named worker) service.</td><td class="ar"><strong>هل يمكنني اختيار العامل بنفسي؟</strong><br>نعم، نرسل لك السير الذاتية للمرشحين المناسبين لتختار منها. وإذا كان لديك عامل محدّد تعرفه، يمكنك الاستفادة من خدمة «معروفة».</td></tr>
+    <tr><td class="el">Q4</td><td><strong>How do I track my request?</strong><br>Use the request number you received after applying, together with your mobile number, in the "Track Your Request" section.</td><td class="ar"><strong>كيف أتابع طلبي؟</strong><br>استخدم رقم الطلب الذي وصلك بعد التقديم مع رقم جوالك في قسم «تتبّع طلبك».</td></tr>
+    <tr><td class="el">Q5</td><td><strong>Which payment methods do you accept?</strong><br>mada, Apple Pay, Visa, Mastercard and STC Pay online, as well as bank transfer and SADAD.</td><td class="ar"><strong>ما طرق الدفع المتاحة؟</strong><br>مدى و Apple Pay وفيزا وماستركارد و STC Pay إلكترونيًا، إضافة إلى التحويل البنكي وسداد.</td></tr>
+    <tr><td class="el">Q6</td><td><strong>Do I have to pay the full amount upfront?</strong><br>Not always. Some packages let you pay a deposit online to start, and the rest later. Each package shows its payment terms clearly.</td><td class="ar"><strong>هل يجب دفع المبلغ كاملًا مقدّمًا؟</strong><br>ليس دائمًا؛ بعض الباقات تتيح دفع عربون إلكترونيًا للبدء، والمتبقي لاحقًا، وتظهر شروط الدفع بوضوح في كل باقة.</td></tr>
+    <tr><td class="el">Q7</td><td><strong>What if the worker isn't the right fit?</strong><br>You are protected by the guarantee terms in the unified Musaned contract, including <span class="ph">[replacement / refund within the trial period. Confirm the exact terms with the client.]</span></td><td class="ar"><strong>ماذا لو لم يناسبني العامل؟</strong><br>حقوقك محفوظة وفق شروط الضمان في العقد الموحّد عبر منصة مساند، بما في ذلك <span class="ph">[الاستبدال أو الاسترداد خلال فترة التجربة. تُؤكَّد الشروط مع العميل.]</span></td></tr>
+    <tr><td class="el">Q8</td><td><strong>Is Araqah a licensed office?</strong><br>Yes. Araqah is licensed by the Musaned platform (ID SAU100000011004), and all our contracts are official and documented.</td><td class="ar"><strong>هل مكتب عراقة مرخّص؟</strong><br>نعم، عراقة مكتب مرخّص من منصة مساند (رقم SAU100000011004)، وجميع عقودنا نظامية وموثّقة.</td></tr>
+    <tr><td class="el">Q9</td><td><strong>Do you offer worker transfer?</strong><br>Yes. We handle the transfer of a domestic worker's services to you through official procedures.</td><td class="ar"><strong>هل تقدّمون خدمة نقل الخدمات؟</strong><br>نعم، نتولّى إجراءات نقل خدمات العامل المنزلي إليك بشكل نظامي.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 15. Final CTA ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">15</span><h2>Final Call to Action</h2><span class="h-ar">دعوة ختامية</span></div>
+  <p class="purpose">A full-width band before the contact section. It is the last push to apply.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">Ready to bring comfort home?</td><td class="big ar">جاهز تبدأ رحلة الراحة لأسرتك؟</td></tr>
+    <tr><td class="el">Body</td><td>Send your request in under a minute, and our team will contact you shortly.</td><td class="ar">أرسل طلبك في أقل من دقيقة، وسيتواصل معك فريقنا في أقرب وقت.</td></tr>
+    <tr><td class="el">Buttons</td><td>Request a Worker · Chat on WhatsApp</td><td class="ar">قدّم طلب استقدام · تواصل عبر واتساب</td></tr>
+  </table>
+</section>
+
+<!-- ============ 16. Contact ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">16</span><h2>Contact</h2><span class="h-ar">تواصل معنا</span></div>
+  <p class="purpose">All direct contact options. Every number is click-to-call and WhatsApp opens a chat. The interactive map is Phase 2; for now a "Get directions" link opens Google Maps.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Heading</td><td class="big">We're here to help</td><td class="big ar">يسعدنا خدمتك</td></tr>
+    <tr><td class="el">Intro</td><td>Visit our office, call us, or message us on WhatsApp. We are happy to answer your questions.</td><td class="ar">زُرنا في مكتبنا أو اتصل بنا أو راسلنا عبر واتساب، ويسعدنا الرد على استفساراتك.</td></tr>
+    <tr><td class="el">Address</td><td>2533 Imam Saud bin Faisal Road, Hittin, Riyadh 13518, Saudi Arabia</td><td class="ar">2533 طريق الإمام سعود بن فيصل، حي حطين، الرياض 13518، المملكة العربية السعودية</td></tr>
+    <tr><td class="el">Unified number</td><td>011 266 2266</td><td class="ar"><bdi dir="ltr">011 266 2266</bdi></td></tr>
+    <tr><td class="el">Mobile</td><td>055 426 2255 · 055 426 2277 · 055 426 2288 · 056 888 8044</td><td class="ar"><bdi dir="ltr">055 426 2255</bdi> · <bdi dir="ltr">055 426 2277</bdi> · <bdi dir="ltr">055 426 2288</bdi> · <bdi dir="ltr">056 888 8044</bdi></td></tr>
+    <tr><td class="el">WhatsApp</td><td>+966 55 426 2266 <span class="ph">[confirm primary]</span></td><td class="ar"><bdi dir="ltr">+966 55 426 2266</bdi> <span class="ph">[يؤكَّد الرقم الرئيسي]</span></td></tr>
+    <tr><td class="el">Email</td><td>info@araqah.com</td><td class="ar">info@araqah.com</td></tr>
+    <tr><td class="el">Working hours</td><td><span class="ph">[Sunday–Thursday, 9:00 AM – 9:00 PM]</span></td><td class="ar"><span class="ph">[الأحد – الخميس، 9:00 ص – 9:00 م]</span></td></tr>
+    <tr><td class="el">Buttons</td><td>Call us · WhatsApp · Get directions</td><td class="ar">اتصل بنا · واتساب · احصل على الاتجاهات</td></tr>
+    <tr><td class="el">Dev note</td><td colspan="2">In the Arabic layout, wrap phone numbers, IDs and handles in <code>&lt;bdi dir="ltr"&gt;</code> so they are not reversed by right-to-left text flow.</td></tr>
+    <tr><td class="el">Social</td><td>Follow us: X @Araqah1 · Instagram @araqah.1 · YouTube · Facebook</td><td class="ar">تابعنا: إكس <bdi dir="ltr">@Araqah1</bdi> · إنستغرام <bdi dir="ltr">@araqah.1</bdi> · يوتيوب · فيسبوك</td></tr>
+  </table>
+</section>
+
+<!-- ============ 17. Footer ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">17</span><h2>Footer</h2><span class="h-ar">التذييل</span></div>
+  <p class="purpose">Repeats the key links and carries the legal and licence details that build trust and that Saudi e-commerce rules expect.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Short about</td><td>Araqah Recruitment Office: a Musaned-licensed office for recruiting trained domestic workers in Riyadh.</td><td class="ar">عراقة للاستقدام: مكتب مرخّص من مساند لاستقدام العمالة المنزلية المدرّبة في الرياض.</td></tr>
+    <tr><td class="el">Quick links</td><td>About · Services · Packages · Track Request · Payment Methods · Contact</td><td class="ar">من نحن · خدماتنا · الباقات · تتبّع الطلب · طرق الدفع · تواصل معنا</td></tr>
+    <tr><td class="el">Services links</td><td>Housemaid · Private Driver · Nanny · Cook · Caregiver · Worker Transfer</td><td class="ar">عاملة منزلية · سائق خاص · مربية أطفال · طبّاخ · مقدّمة رعاية · نقل الخدمات</td></tr>
+    <tr><td class="el">Legal links</td><td>Privacy Policy · Terms &amp; Conditions · Refund Policy</td><td class="ar">سياسة الخصوصية · الشروط والأحكام · سياسة الاسترداد</td></tr>
+    <tr><td class="el">Licence info</td><td>Musaned licence: SAU100000011004 · CR: <span class="ph">[XXXXXXXXXX]</span> · VAT No.: <span class="ph">[3XXXXXXXXXXXXX3]</span></td><td class="ar">ترخيص مساند: SAU100000011004 · السجل التجاري: <span class="ph">[XXXXXXXXXX]</span> · الرقم الضريبي: <span class="ph">[3XXXXXXXXXXXXX3]</span></td></tr>
+    <tr><td class="el">Copyright</td><td>© 2026 Araqah Recruitment Office. All rights reserved.</td><td class="ar">© 2026 عراقة للاستقدام. جميع الحقوق محفوظة.</td></tr>
+  </table>
+  <div class="note">The Privacy Policy, Terms &amp; Conditions and Refund Policy pages are needed before online payments go live. Moyasar and Saudi e-commerce rules expect them. Their content should be drafted with the client and reviewed by their legal adviser.</div>
+</section>
+
+<!-- ============ 18. Microcopy ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">18</span><h2>Global Microcopy</h2><span class="h-ar">نصوص مساندة</span></div>
+  <p class="purpose">Short texts used across the page: floating contact buttons, the request form and its success message (wording from the PRD), and payment results.</p>
+  <table class="copy">
+    <colgroup><col class="el"><col class="lang"><col class="lang"></colgroup>
+    <thead><tr><th>Element</th><th>English</th><th class="ar">العربية</th></tr></thead>
+    <tr><td class="el">Sticky buttons</td><td>Call · WhatsApp</td><td class="ar">اتصال · واتساب</td></tr>
+    <tr><td class="el">WhatsApp pre-filled text</td><td>Hello Araqah, I'd like to ask about recruiting a domestic worker.</td><td class="ar">السلام عليكم، أرغب في الاستفسار عن استقدام عمالة منزلية.</td></tr>
+    <tr><td class="el">Form title</td><td>Request a worker</td><td class="ar">طلب استقدام</td></tr>
+    <tr><td class="el">Form fields</td><td>Full name · Mobile number · City · Service type · Required profession · Required nationality · Preferred contact method (Call / WhatsApp / Email) · Notes or special requests</td><td class="ar">الاسم الكامل · رقم الجوال · المدينة · نوع الخدمة · المهنة المطلوبة · الجنسية المطلوبة · طريقة التواصل المفضّلة (اتصال / واتساب / بريد إلكتروني) · ملاحظات أو طلبات خاصة</td></tr>
+    <tr><td class="el">Form button</td><td>Send request</td><td class="ar">إرسال الطلب</td></tr>
+    <tr><td class="el">Phone validation</td><td>Please enter a valid Saudi mobile number starting with 05.</td><td class="ar">يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05.</td></tr>
+    <tr><td class="el">Required field</td><td>This field is required.</td><td class="ar">هذا الحقل مطلوب.</td></tr>
+    <tr><td class="el">Success title</td><td class="big">Request received!</td><td class="big ar">تم استلام طلبك!</td></tr>
+    <tr><td class="el">Success message</td><td>Your request has been received successfully. The Araqah Recruitment team will contact you shortly.</td><td class="ar">تم استلام طلبكم بنجاح، وسيتواصل معكم فريق عراقة للاستقدام قريبًا.</td></tr>
+    <tr><td class="el">Tracking ID line</td><td>Your request number: <strong>ARQ-26-XXXXXX</strong>. Keep it to track your request.</td><td class="ar">رقم طلبك: <strong><bdi dir="ltr">ARQ-26-XXXXXX</bdi></strong>. احتفظ به لمتابعة طلبك.</td></tr>
+    <tr><td class="el">Success buttons</td><td>Copy number · Track my request</td><td class="ar">نسخ الرقم · تتبّع طلبي</td></tr>
+    <tr><td class="el">Payment success</td><td>Payment successful. Thank you! Transaction ID: <strong>[ID]</strong></td><td class="ar">تمت عملية الدفع بنجاح، شكرًا لك! رقم العملية: <strong>[ID]</strong></td></tr>
+    <tr><td class="el">Payment failed</td><td>The payment was not completed. No amount has been charged. Please try again.</td><td class="ar">لم تكتمل عملية الدفع ولم يُخصم أي مبلغ. يرجى المحاولة مرة أخرى.</td></tr>
+    <tr><td class="el">Generic error</td><td>Something went wrong. Please try again or contact us on WhatsApp.</td><td class="ar">حدث خطأ ما، يرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 19. Checklist ============ -->
+<section class="sec">
+  <div class="sec-head"><span class="num">19</span><h2>Client Confirmation Checklist</h2><span class="h-ar">بنود للتأكيد مع العميل</span></div>
+  <p class="purpose">Everything marked <span class="ph">[placeholder]</span> above, collected in one list for sign-off.</p>
+  <ul class="check">
+    <li>Choice of hero headline (A / B / C), or the client's own</li>
+    <li>Founding year → "years of experience"; number of families served (or remove these figures)</li>
+    <li>Mission, vision and values wording</li>
+    <li>Nationalities currently open for recruitment</li>
+    <li>Package list: names, prices, full vs deposit, deposit amounts, inclusions, VAT treatment</li>
+    <li>Typical recruitment duration per nationality (FAQ Q1)</li>
+    <li>Required customer documents (FAQ Q2)</li>
+    <li>Guarantee / replacement / refund terms (FAQ Q7)</li>
+    <li>Primary WhatsApp number (055 426 2266 or 056 888 8044) and working hours</li>
+    <li>Commercial Registration (CR) number and VAT number</li>
+    <li>Bank accounts / IBANs and SADAD biller details for the Payment Methods page</li>
+    <li>At least 3 genuine customer reviews (with permission), or hide the Testimonials section</li>
+    <li>Privacy Policy, Terms &amp; Conditions and Refund Policy text</li>
+    <li>Logo files (SVG/PNG), brand manual, and real photography (or approval to use stock imagery)</li>
+  </ul>
+</section>
+
+</body>
+</html>

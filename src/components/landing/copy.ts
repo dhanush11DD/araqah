@@ -1,0 +1,98 @@
+import type { Locale } from "@/lib/requests";
+
+// Text for the parts the design file does not draw: form errors, the success
+// modal (wording from the PRD) and the tracking modal.
+export const copy = {
+  en: {
+    bodyFont: "'Manrope', system-ui, sans-serif",
+    headingFont: "'Fraunces', Georgia, serif",
+    close: "Close",
+    menu: { open: "Open menu", close: "Close menu" },
+    errors: {
+      name: "Please enter your full name.",
+      phone: "Please enter a valid Saudi mobile number starting with 05.",
+      rateLimited: "Too many attempts. Please wait a few minutes and try again.",
+      generic: "Something went wrong. Please try again or call us on 011 266 2266.",
+    },
+    success: {
+      title: "Request received!",
+      message: "Your request has been received successfully. The Araqah Recruitment team will contact you shortly.",
+      numberLabel: "Your request number",
+      keep: "Keep it to track your request.",
+      copy: "Copy number",
+      copied: "Copied",
+      track: "Track my request",
+    },
+    track: {
+      title: "Track your request",
+      intro: "Enter your request number and mobile number to see the latest status of your request.",
+      codeLabel: "Request number",
+      codePlaceholder: "ARQ-26-XXXXXX",
+      phoneLabel: "Mobile number",
+      submit: "Track request",
+      searching: "Checking…",
+      notFound: "We couldn't find a request with these details. Check the number and try again, or call us.",
+      requestNumber: "Request",
+      stageOf: (n: number) => `Stage ${n} of 8`,
+      stages: [
+        "Request Received",
+        "Under Processing",
+        "Candidate Selected",
+        "Processing Formalities",
+        "Flight Booked",
+        "Departed Origin Country",
+        "Awaiting Arrival",
+        "Arrived",
+      ],
+      dateLocale: "en-GB",
+      another: "Track another request",
+    },
+  },
+  ar: {
+    bodyFont: "'IBM Plex Sans Arabic', system-ui, sans-serif",
+    headingFont: "'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif",
+    close: "إغلاق",
+    menu: { open: "فتح القائمة", close: "إغلاق القائمة" },
+    errors: {
+      name: "يرجى إدخال الاسم الكامل.",
+      phone: "يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05.",
+      rateLimited: "محاولات كثيرة. يرجى الانتظار بضع دقائق ثم المحاولة مرة أخرى.",
+      generic: "حدث خطأ ما، يرجى المحاولة مرة أخرى أو الاتصال بنا على 011 266 2266.",
+    },
+    success: {
+      title: "تم استلام طلبك!",
+      message: "تم استلام طلبكم بنجاح، وسيتواصل معكم فريق عراقة للاستقدام قريبًا.",
+      numberLabel: "رقم طلبك",
+      keep: "احتفظ به لمتابعة طلبك.",
+      copy: "نسخ الرقم",
+      copied: "تم النسخ",
+      track: "تتبّع طلبي",
+    },
+    track: {
+      title: "تتبّع طلبك",
+      intro: "أدخل رقم الطلب ورقم الجوال لمعرفة آخر مستجدات طلبك.",
+      codeLabel: "رقم الطلب",
+      codePlaceholder: "ARQ-26-XXXXXX",
+      phoneLabel: "رقم الجوال",
+      submit: "تتبّع الطلب",
+      searching: "جارٍ البحث…",
+      notFound: "لم نعثر على طلب بهذه البيانات. تأكّد من الرقم وحاول مرة أخرى، أو اتصل بنا.",
+      requestNumber: "الطلب",
+      stageOf: (n: number) => `المرحلة ${n} من 8`,
+      stages: [
+        "تم استلام الطلب",
+        "تحت الإجراء",
+        "تم اختيار المرشح",
+        "جاري إنهاء الإجراءات",
+        "تم حجز الرحلة",
+        "غادر بلد الإرسال",
+        "في انتظار الوصول",
+        "وصل",
+      ],
+      dateLocale: "ar-SA-u-nu-latn-ca-gregory",
+      another: "تتبّع طلب آخر",
+    },
+  },
+} satisfies Record<Locale, unknown>;
+
+export type Copy = (typeof copy)[Locale];
