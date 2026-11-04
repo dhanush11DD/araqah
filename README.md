@@ -36,14 +36,22 @@ Staff accounts can use requests, payment links, form options, mail templates and
 
 The website form has no email field (the approved design does not show one), so customer emails (status updates, payment links, receipts) need an email address added by staff on the request, or typed on the payment link.
 
-## Content not shown yet
+## Content not shown
 
-Two parts of the mock-up are left out of the page until real content exists: the **reviews section** (with its "4.9 on Google" rating) and the footer **Privacy / Terms / Refund links**. They are controlled by `SHOW_REVIEWS` and `SHOW_POLICY_LINKS` at the top of `scripts/convert-design.py`. Set one to `True` and run `npm run convert-design` to bring it back.
+Two parts of the mock-up are left out of the page: the **nationalities section** (removed at the client's request) and, until real content exists, the **reviews section** (with its "4.9 on Google" rating). They are controlled by `SHOW_NATIONALITIES` and `SHOW_REVIEWS` at the top of `scripts/convert-design.py`. Set one to `True` and run `npm run convert-design` to bring it back.
+
+## Service and policy pages
+
+`/ar` and `/en` each have `/services/recruitment` and `/services/leasing` (the two services shown as a carousel on the landing page). Their wording, including the "Why choose" points and photo, is in `src/lib/services.ts`. They also carry the home page's Contact section and request form, with that service already selected.
+
+`/ar` and `/en` each have `/privacy-policy`, `/terms-and-conditions` and `/refund-policy`, linked from the footer. The wording is the client's own and lives in `src/lib/policies.ts`; the layout is `src/components/policy/PolicyPage.tsx`.
+
+Every page shares the same navbar and footer. They are generated with the home page, from the design files, as `Header`, `Contact` and `Footer` in `LandingEn.tsx`/`LandingAr.tsx`; `src/components/landing/SiteFrame.tsx` puts them around the inner pages and `useSite.tsx` holds their behaviour, including the Services dropdown.
 
 ## Where things are
 
 - `design/landing-en.dc.html`, `design/landing-ar.dc.html`: the approved design, the source of truth.
-- `src/components/landing/LandingEn.tsx`, `LandingAr.tsx`: generated from the design files. Do not edit by hand. Change the design file, then run `npm run convert-design`. The three dropdowns render their options from the database.
+- `src/components/landing/LandingEn.tsx`, `LandingAr.tsx`: generated from the design files. Do not edit by hand. Change the design file, then run `npm run convert-design`. The three dropdowns render their options from the database, and the two company services are a carousel (behaviour in `useSlideshow.ts`, look in `src/app/globals.css`).
 - `src/app/(site)/[locale]`: the public site, plus `pay/[code]` (customer payment page) and its result page.
 - `src/app/(admin)/admin`: the dashboard.
 - `src/app/api/requests`, `track`, `webhooks/moyasar`: public APIs.

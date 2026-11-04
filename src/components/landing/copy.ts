@@ -8,6 +8,7 @@ export const copy = {
     headingFont: "'Fraunces', Georgia, serif",
     close: "Close",
     menu: { open: "Open menu", close: "Close menu" },
+    slider: { region: "Our services", prev: "Previous service", next: "Next service", dot: (n: number) => `Go to service ${n}` },
     errors: {
       name: "Please enter your full name.",
       phone: "Please enter a valid Saudi mobile number starting with 05.",
@@ -53,6 +54,7 @@ export const copy = {
     headingFont: "'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif",
     close: "إغلاق",
     menu: { open: "فتح القائمة", close: "إغلاق القائمة" },
+    slider: { region: "خدماتنا", prev: "الخدمة السابقة", next: "الخدمة التالية", dot: (n: number) => `الانتقال إلى الخدمة ${n}` },
     errors: {
       name: "يرجى إدخال الاسم الكامل.",
       phone: "يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05.",

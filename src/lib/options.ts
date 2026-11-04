@@ -1,5 +1,5 @@
 import "server-only";
-import { getDb } from "./db";
+import { getDb, now } from "./db";
 import type { Locale } from "./requests";
 
 export const OPTION_KINDS = ["service", "profession", "nationality"] as const;
@@ -16,9 +16,10 @@ export type FormOption = { id: number; kind: OptionKind; code: string; nameEn: s
 // The first set is exactly what the approved design shows, so a fresh install renders identically.
 const DEFAULTS: Record<OptionKind, [string, string, string][]> = {
   service: [
-    ["recruitment", "Worker Recruitment", "استقدام العمالة"],
+    ["recruitment", "Recruitment Services", "خدمات الاستقدام"],
+    ["leasing", "Domestic Worker Leasing Services", "خدمات التأجير"],
     ["transfer", "Worker Transfer", "نقل الخدمات"],
-    ["maarofa", "Named Worker (Maarofa)", "خدمة «معروفة»"],
+    ["maarofa", "Requested Worker (Maarofa)", "خدمة «معروفة»"],
     ["contract", "Contract Authentication", "توثيق العقود"],
   ],
   profession: [
@@ -54,8 +55,39 @@ const toOption = (r: Record<string, unknown>): FormOption => ({
   isActive: Number(r.is_active) === 1,
 });
 
+/** Brings databases created before a wording change up to date. Staff edits are left alone. */
+async function upgradeOptions() {
+  const db = await getDb();
+  const renames: [string, "name_en" | "name_ar", string, string][] = [
+    ["maarofa", "name_en", "Named Worker (Maarofa)", "Requested Worker (Maarofa)"],
+    ["recruitment", "name_en", "Worker Recruitment", "Recruitment Services"],
+    ["recruitment", "name_ar", "استقدام العمالة", "خدمات الاستقدام"],
+  ];
+  for (const [code, column, from, to] of renames) {
+    await db.run(`UPDATE form_options SET ${column} = ? WHERE kind = 'service' AND code = ? AND ${column} = ?`, [to, code, from]);
+  }
+  // Leasing is added once, right after recruitment. The marker stops it coming back if staff later delete it.
+  if (await db.get("SELECT skey FROM settings WHERE skey = 'options.leasing_added'")) return;
+  const services = Number((await db.get("SELECT COUNT(*) AS c FROM form_options WHERE kind = 'service'"))?.c ?? 0);
+  const hasLeasing = await db.get("SELECT id FROM form_options WHERE kind = 'service' AND code = 'leasing'");
+  if (services > 0 && !hasLeasing) {
+    const recruitment = await db.get("SELECT sort_order FROM form_options WHERE kind = 'service' AND code = 'recruitment'");
+    const after = Number(recruitment?.sort_order ?? 0);
+    await db.run("UPDATE form_options SET sort_order = sort_order + 1 WHERE kind = 'service' AND sort_order > ?", [after]);
+    await db.run("INSERT INTO form_options (kind, code, name_en, name_ar, sort_order, is_active) VALUES ('service', 'leasing', ?, ?, ?, 1)", ["Domestic Worker Leasing Services", "خدمات التأجير", after + 1]);
+  }
+  await db.run("INSERT INTO settings (skey, svalue, is_secret, updated_at) VALUES ('options.leasing_added', '1', 0, ?)", [now()]);
+}
+
+let upgrade: Promise<void> | null = null;
+
 async function seed() {
   const db = await getDb();
+  upgrade ??= upgradeOptions().catch((error) => {
+    upgrade = null; // try again on the next request
+    throw error;
+  });
+  await upgrade;
   const count = Number((await db.get("SELECT COUNT(*) AS c FROM form_options"))?.c ?? 0);
   if (count > 0) return;
   for (const kind of OPTION_KINDS) {

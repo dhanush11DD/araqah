@@ -28,14 +28,14 @@ JOBS = [
 IMAGES = {
     "f9c807af440d7e418321b768ec6ed127": ("/images/araqah-logo.png", 128, 46, None, True),
     "892043b87c3cf26dc53a3ec96d20943a": ("/images/araqah-logo-footer.png", 230, 115, None, False),
-    "61b14d552eaad58808b82f223469c8f4": ("/images/hero-housemaids.jpg", 820, 461, "(max-width: 1100px) 100vw, 620px", True),
+    "61b14d552eaad58808b82f223469c8f4": ("/images/hero-living-room.jpg", 1300, 730, "(max-width: 1100px) 100vw, 620px", True),
     "baf7db43a1cfa46ab7a3b8cacf2989e4": ("/images/nanny.jpg", 678, 452, "(max-width: 700px) 100vw, 320px", False),
-    "237ea511f97a9ef3db46929e13728c61": ("/images/support-team.jpg", 500, 750, "(max-width: 1100px) 100vw, 600px", False),
+    "237ea511f97a9ef3db46929e13728c61": ("/images/about-team.jpg", 1300, 682, "(max-width: 1100px) 100vw, 600px", False),
     "5d69dfce2fe56587a076e8457c5328b2": ("/images/housemaid.jpg", 612, 408, "(max-width: 700px) 100vw, 320px", False),
-    "f72ecdee301a4b48dcb61e858852a1d8": ("/images/male-worker.jpg", 927, 509, "(max-width: 700px) 100vw, 320px", False),
+    "f72ecdee301a4b48dcb61e858852a1d8": ("/images/family-pool.jpg", 1300, 866, "(max-width: 700px) 100vw, 640px", False),
     "d927c47796f06ca9a7888db8f9351173": ("/images/driver.jpg", 1125, 750, "(max-width: 700px) 100vw, 320px", False),
     "4cb8a84df71510da70b780f15d67e32a": ("/images/caregiver.jpg", 652, 471, "(max-width: 700px) 100vw, 320px", False),
-    "39f65bfc5505f71cb1e5b03831353d22": ("/images/cook.jpg", 1280, 853, "(max-width: 700px) 100vw, 320px", False),
+    "39f65bfc5505f71cb1e5b03831353d22": ("/images/elegant-living-room.jpg", 1300, 714, "(max-width: 700px) 100vw, 640px", False),
     "f72b8ddc1f19664a767968df959a4027": ("/images/special-needs.jpg", 1000, 667, "(max-width: 700px) 100vw, 320px", False),
 }
 
@@ -49,7 +49,7 @@ RADIO_VALUES = ["call", "email"]
 # Content that is in the design but not real yet. Left out of the page until the client supplies
 # the real thing; set a switch to True and run `npm run convert-design` to bring it back.
 SHOW_REVIEWS = False       # the "Testimonials" section and its "4.9 on Google" rating (invented in the mock-up)
-SHOW_POLICY_LINKS = False  # footer Privacy / Terms / Refund links: no policy pages exist yet
+SHOW_NATIONALITIES = False # the "Choose from 10 nationalities" section (removed at the client's request)
 
 VOID = {"img", "input", "br", "hr", "meta", "link", "source", "area", "col", "embed", "wbr"}
 NO_WS = {"select", "table", "tbody", "thead", "tfoot", "tr", "colgroup", "ol", "ul", "svg", "fieldset"}
@@ -165,9 +165,13 @@ def style_jsx(style):
 
 
 class Converter:
-    def __init__(self):
+    def __init__(self, suffix):
+        self.suffix = suffix
+        self.rendering_part = False
         self.section = None
         self.text_i = self.select_i = self.radio_i = 0
+        self.parts = {}  # Header, Contact and Footer: shared with the service and policy pages
+        self.in_chrome = False
 
     def text(self, data, parent_tag):
         if data.strip() == "":
@@ -192,6 +196,13 @@ class Converter:
         for name, value in node.attrs:
             value = "" if value is None else value
             if name == "style":
+                # The designed underline under "Home" only belongs on the home page.
+                if tag == "a" and "box-shadow" in value and find_ancestor(node, "nav"):
+                    decls = parse_style(value)
+                    shadow = decls.pop("boxShadow")
+                    base = ", ".join(f"{k}: {js(v)}" for k, v in decls.items())
+                    out.append(f'style={{{{ {base}, ...(b.page === "home" ? {{ boxShadow: {js(shadow)} }} : {{}}) }}}}')
+                    continue
                 out.append("style=" + style_jsx(value))
                 continue
             if name == "hint-placeholder-val":
@@ -220,6 +231,10 @@ class Converter:
                 if self.section == "track":
                     out.append('href="#track" onClick={b.openTrack}')
                     continue
+            # Navbar and footer links also work from the other pages.
+            if tag == "a" and name == "href" and value.startswith("#") and len(value) > 1 and self.in_chrome:
+                out.append(f"href={{b.to({js(value)})}}")
+                continue
             key = ATTR.get(name, name)
             if re.search(r'["\\{}]', value):
                 out.append(f"{key}={{{js(value)}}}")
@@ -229,7 +244,7 @@ class Converter:
             out.extend(extra)
         return (" " + " ".join(out)) if out else ""
 
-    def element(self, node, depth):
+    def element(self, node, depth, cls=None):
         pad = "  " * depth
         tag = node.tag
         attrs = dict(node.attrs)
@@ -242,14 +257,36 @@ class Converter:
             inner = "".join(self.children(node, depth + 1))
             return f"{{b.faqOpen {op} {hole.group(2)} && (<>{inner}</>)}}"
 
+        # The two company services are one grid in the design. On the site they are a carousel:
+        # the same cards, scrolled sideways, with arrows, dots and autoplay.
+        if tag == "div" and self.section == "services" and "minmax(min(100%, 340px), 1fr)" in attrs.get("style", ""):
+            cards = [c for c in node.children if not isinstance(c, str)]
+            slides = "".join(self.element(c, depth + 3, cls="svc-slide") for c in cards)
+            return SLIDER.replace("%SLIDES%", slides)
+
+        # The Services link in the navbar is a dropdown of the two service pages.
+        if tag == "a" and attrs.get("href") == "#services" and find_ancestor(node, "nav") and find_ancestor(node, "header"):
+            label = "".join(c for c in node.children if isinstance(c, str))
+            return NAV_DROPDOWN.replace("%LABEL%", js(label))
+
+        # Navbar, Contact and footer become components of their own, used by every page.
+        part = {"header": "Header", "footer": "Footer"}.get(tag)
+        if tag == "section" and attrs.get("id") == "contact":
+            part = "Contact"
+            self.section = "contact"
+        if part and not self.rendering_part:
+            self.rendering_part = True
+            self.in_chrome = part != "Contact"
+            self.parts[part] = self.element(node, 2)
+            self.in_chrome = False
+            self.rendering_part = False
+            return f"\n{pad}<{part}{self.suffix} b={{b}} />"
+
         if tag == "section" and "id" in attrs:
             self.section = attrs["id"]
             if attrs["id"] == "reviews" and not SHOW_REVIEWS:
                 return ""
-
-        if not SHOW_POLICY_LINKS and tag == "div":
-            links = [c for c in node.children if not isinstance(c, str)]
-            if len(links) == 3 and all(c.tag == "a" and dict(c.attrs).get("href") == "#" for c in links):
+            if attrs["id"] == "nationalities" and not SHOW_NATIONALITIES:
                 return ""
 
         if tag == "img":
@@ -282,7 +319,8 @@ class Converter:
         elif tag == "select":
             name = SELECTS[self.select_i]
             self.select_i += 1
-            attr_str = self.attrs(node, [f'name="{name}"'])
+            # On a service page the form starts on that service.
+            attr_str = self.attrs(node, [f'name="{name}"'] + (["defaultValue={b.defaultService}"] if name == "serviceType" else []))
             return (
                 f"\n{pad}<select{attr_str}>"
                 f"{{b.options.{name}.map((o) => (<option key={{o.code}} value={{o.code}}>{{o.label}}</option>))}}</select>"
@@ -299,6 +337,8 @@ class Converter:
             extra = ['className="site-nav"', 'id="site-nav"']
         elif tag == "div" and node.parent.tag == "div" and node.parent.parent.tag == "header":
             extra = ['className="site-actions"']
+        if cls:
+            extra.append(f'className="{cls}"')
         submit = tag == "button" and attrs.get("type") == "button" and find_ancestor(node, "form")
         if submit:
             renamed = Node("button", [(k, "submit" if k == "type" else v) for k, v in node.attrs], node.parent)
@@ -320,6 +360,42 @@ class Converter:
             )
         return html
 
+
+# Services carousel wrapper. Behaviour lives in Landing.tsx (b.slider); look is in globals.css (.svc-*).
+SLIDER = """
+<div className="svc-slider" style={{ marginTop: "32px" }} onMouseEnter={b.slider.pause} onMouseLeave={b.slider.resume} onFocus={b.slider.pause} onBlur={b.slider.resume}>
+  <div className="svc-track" ref={b.slider.ref} onScroll={b.slider.onScroll} onTouchStart={b.slider.touch} role="group" aria-roledescription="carousel" aria-label={b.slider.labels.region} tabIndex={0}>%SLIDES%
+  </div>
+  <div className="svc-controls">
+    <div className="svc-dots">
+      {Array.from({ length: b.slider.pages }, (_, i) => (
+        <button key={i} type="button" className="svc-dot" aria-label={b.slider.labels.dot(i + 1)} aria-current={b.slider.page === i} onClick={() => b.slider.go(i)} />
+      ))}
+    </div>
+    <div className="svc-arrows">
+      <button type="button" className="svc-arrow" aria-label={b.slider.labels.prev} onClick={b.slider.prev}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <button type="button" className="svc-arrow" aria-label={b.slider.labels.next} onClick={b.slider.next}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</div>"""
+
+# Services dropdown in the navbar. Behaviour is in useSite.tsx (b.servicesMenu); look is in globals.css (.nav-drop*).
+NAV_DROPDOWN = """
+<div className="nav-drop" data-open={b.servicesMenu.open}>
+  <button type="button" className="nav-drop-btn" aria-expanded={b.servicesMenu.open} aria-controls="nav-services" data-active={b.page === "service"} onClick={b.servicesMenu.toggle}>
+    {%LABEL%}
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"></path></svg>
+  </button>
+  <div className="nav-drop-menu" id="nav-services">
+    {b.servicesMenu.items.map((item) => (
+      <a key={item.href} href={item.href} aria-current={item.current ? "page" : undefined}>{item.title}</a>
+    ))}
+  </div>
+</div>"""
 
 # Phone/tablet menu toggle placed after the header logo. The design has no
 # narrow-screen header; globals.css shows this button and hides the full nav
@@ -347,14 +423,21 @@ def convert(src, dst, name):
     xdc = find(parser.root, "x-dc")
     page = next(c for c in xdc.children if not isinstance(c, str) and c.tag != "helmet")
 
-    body = Converter().element(page, 2)
+    suffix = name.replace("Landing", "")
+    converter = Converter(suffix)
+    body = converter.element(page, 2)
 
+    parts = "".join(
+        f"export function {part}{suffix}({{ b }}: {{ b: SiteBindings }}) {{\n  return ({html}\n  );\n}}\n\n"
+        for part, html in converter.parts.items()
+    )
     out = (
         f"// Generated from {src} by scripts/convert-design.py. Do not edit by hand:\n"
         f"// change the design file and run `npm run convert-design`.\n"
         '"use client";\n\n'
         'import Image from "next/image";\n'
-        'import type { LandingBindings } from "./types";\n\n'
+        'import type { LandingBindings, SiteBindings } from "./types";\n\n'
+        f"{parts}"
         f"export default function {name}({{ b }}: {{ b: LandingBindings }}) {{\n"
         f"  return ({body}\n  );\n}}\n"
     )

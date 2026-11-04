@@ -11,13 +11,13 @@ function jsonLd(locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "EmploymentAgency",
-    name: locale === "ar" ? "عراقة للاستقدام" : "Araqah Recruitment Office",
+    name: locale === "ar" ? "عراقة للاستقدام" : "Araqah Recruitment Co.",
     url: `${SITE_URL}/${locale}`,
     logo: `${SITE_URL}/images/araqah-logo.png`,
     image: `${SITE_URL}/images/hero-housemaids.jpg`,
     telephone: "+966112662266",
     email: "info@araqah.com",
-    identifier: "SAU100000011004",
+    identifier: "3701173",
     address: {
       "@type": "PostalAddress",
       streetAddress: locale === "ar" ? "2533 طريق الإمام سعود بن فيصل، حطين" : "2533 Imam Saud bin Faisal Road, Hittin",

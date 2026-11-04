@@ -3,39 +3,246 @@
 "use client";
 
 import Image from "next/image";
-import type { LandingBindings } from "./types";
+import type { LandingBindings, SiteBindings } from "./types";
+
+export function HeaderEn({ b }: { b: SiteBindings }) {
+  return (
+    <header style={{ position: "sticky", top: "0", zIndex: "20", background: "rgba(250,247,240,0.94)", backdropFilter: "blur(10px)", borderBottom: "1px solid #E4DCCB" }} className="site-header" data-menu={b.menuOpen ? "open" : "closed"} onClick={b.onHeaderClick}>{" "}
+      <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "16px 28px", minHeight: "80px", paddingTop: "10px", paddingBottom: "10px" }} className="site-bar">{" "}
+        <a href={b.to("#top")} aria-label="Araqah Recruitment Co., home" style={{ display: "flex", alignItems: "center" }}>
+          <Image alt="Araqah" style={{ height: "46px", width: "auto", display: "block" }} src="/images/araqah-logo.png" width={128} height={46} priority /></a>
+        <button type="button" className="site-menu-btn" aria-expanded={b.menuOpen} aria-controls="site-nav" aria-label={b.menuLabel} onClick={b.toggleMenu} style={{ alignItems: "center", justifyContent: "center", width: "44px", height: "44px", padding: "0", borderRadius: "10px", border: "1.5px solid #141414", background: "transparent", color: "#141414", cursor: "pointer" }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {b.menuOpen ? <path d="M6 6l12 12M18 6L6 18"></path> : <path d="M4 7h16M4 12h16M4 17h16"></path>}
+          </svg>
+        </button>{" "}
+        <nav aria-label="Main" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px 24px", fontSize: "14px", fontWeight: "600" }} className="site-nav" id="site-nav">{" "}
+          <a href={b.to("#top")} style={{ color: "#141414", textDecoration: "none", padding: "8px 0", ...(b.page === "home" ? { boxShadow: "inset 0 -2px 0 #F5C518" } : {}) }}>{"Home"}</a>{" "}
+          <a href={b.to("#about")} style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"About"}</a>{" "}
+<div className="nav-drop" data-open={b.servicesMenu.open}>
+  <button type="button" className="nav-drop-btn" aria-expanded={b.servicesMenu.open} aria-controls="nav-services" data-active={b.page === "service"} onClick={b.servicesMenu.toggle}>
+    {"Services"}
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"></path></svg>
+  </button>
+  <div className="nav-drop-menu" id="nav-services">
+    {b.servicesMenu.items.map((item) => (
+      <a key={item.href} href={item.href} aria-current={item.current ? "page" : undefined}>{item.title}</a>
+    ))}
+  </div>
+</div>{" "}
+          <a href={b.to("#track")} style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"Track Request"}</a>{" "}
+          <a href={b.to("#faq")} style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"FAQ"}</a>{" "}
+          <a href={b.to("#contact")} style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"Contact"}</a>{" "}</nav>{" "}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "16px" }} className="site-actions">{" "}
+          <a href={b.altLocaleHref} lang="ar" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif", fontSize: "15px", fontWeight: "600", color: "#141414", textDecoration: "none", padding: "8px 4px" }}>{"العربية"}</a>{" "}
+          <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: "700", color: "#141414", textDecoration: "none", padding: "8px 0" }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>
+            <bdi dir="ltr">{"011 266 2266"}</bdi></a>{" "}
+          <a href={b.to("#request")} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", textDecoration: "none", boxSizing: "border-box", minHeight: "46px", padding: "0 20px", fontSize: "14px" }}>{"Request a Worker"}</a>{" "}</div>{" "}</div>{" "}</header>
+  );
+}
+
+export function ContactEn({ b }: { b: SiteBindings }) {
+  return (
+    <section id="contact" style={{ padding: "48px 0" }}>{" "}
+      <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "28px", padding: "36px 44px", borderRadius: "24px", background: "#141414", position: "relative", overflow: "hidden" }}>{" "}
+          <div style={{ position: "absolute", right: "-60px", top: "-130px", width: "200px", height: "200px", borderRadius: "50%", border: "36px solid #F5C518" }}></div>{" "}
+          <div style={{ position: "relative", flex: "1 1 420px", minWidth: "0" }}>
+            <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1.08", color: "#FFFFFF" }}>{"Ready to bring comfort home?"}</h2>
+            <p style={{ margin: "12px 0 0", fontSize: "17px", lineHeight: "1.6", color: "#CFCAC0" }}>{"Send your request in under a minute, and our team will contact you shortly."}</p></div>{" "}
+          <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: "12px", paddingRight: "130px" }}>
+            <a href="#request" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#F5C518", color: "#141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Request a Worker "}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box", color: "#FFFFFF", borderColor: "#FFFFFF" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>{"Call us"}</a></div>{" "}</div>{" "}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "48px", marginTop: "44px" }}>{" "}
+          <div style={{ flex: "1 1 400px", minWidth: "0" }}>{" "}
+            <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"Contact"}</p>
+            <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "720px" }}>{"We're here to help"}</h2>{" "}
+            <p style={{ margin: "16px 0 0", fontSize: "16px", lineHeight: "1.65", color: "#3D3D3D", maxWidth: "460px" }}>{"Visit our office, call us, or email us. We are happy to answer your questions."}</p>{" "}
+            <div style={{ display: "flex", flexDirection: "column", marginTop: "24px", borderTop: "1px solid #E4DCCB" }}>{" "}
+              <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
+                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path>
+                    <circle cx="12" cy="10" r="2.3"></circle></svg></span>
+                <div style={{ minWidth: "0" }}>
+                  <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Address"}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>{"2533 Imam Saud bin Faisal Road, Hittin, Riyadh 13518, Saudi Arabia"}</p></div></div>{" "}
+              <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
+                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg></span>
+                <div style={{ minWidth: "0" }}>
+                  <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Unified number"}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
+                    <a href="tel:0112662266" style={{ color: "inherit", textDecoration: "none" }}>
+                      <bdi dir="ltr">{"011 266 2266"}</bdi></a></p></div></div>{" "}
+              <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
+                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg></span>
+                <div style={{ minWidth: "0" }}>
+                  <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Mobile"}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
+                    <bdi dir="ltr">{"055 426 2255"}</bdi>{" · "}
+                    <bdi dir="ltr">{"055 426 2277"}</bdi>{" · "}
+                    <bdi dir="ltr">{"055 426 2288"}</bdi>{" · "}
+                    <bdi dir="ltr">{"056 888 8044"}</bdi></p></div></div>{" "}
+              <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
+                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="M3.5 6.5l8.5 6 8.5-6"></path></svg></span>
+                <div style={{ minWidth: "0" }}>
+                  <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Email"}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
+                    <a href="mailto:info@araqah.com" style={{ color: "inherit", textDecoration: "none" }}>{"info@araqah.com"}</a></p></div></div>{" "}
+              <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
+                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8.5"></circle>
+                    <path d="M12 7.5V12l3 2"></path></svg></span>
+                <div style={{ minWidth: "0" }}>
+                  <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Working hours"}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>{"Sunday–Thursday, 9:00 AM – 9:00 PM"}</p></div></div>{" "}</div>{" "}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "24px" }}>{" "}
+              <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>{"Call us"}</a>{" "}
+              <a href="mailto:info@araqah.com" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="M3.5 6.5l8.5 6 8.5-6"></path></svg>{"Email us"}</a>{" "}
+              <a href="https://maps.google.com/?q=2533+Imam+Saud+bin+Faisal+Road+Hittin+Riyadh" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path>
+                  <circle cx="12" cy="10" r="2.3"></circle></svg>{"Get directions"}</a>{" "}</div>{" "}
+            <div style={{ marginTop: "22px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px" }}>
+              <span style={{ fontSize: "14px", fontWeight: "700", color: "#141414", marginInlineEnd: "4px" }}>{"Follow us"}</span>
+              <a href="https://x.com/Araqah1" target="_blank" rel="noopener noreferrer" aria-label="Araqah on X (@Araqah1)" title="Araqah on X (@Araqah1)" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1.5px solid #141414", color: "#141414", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a>
+              <a href="https://www.instagram.com/araqah.1/" target="_blank" rel="noopener noreferrer" aria-label="Araqah on Instagram (@araqah.1)" title="Araqah on Instagram (@araqah.1)" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1.5px solid #141414", color: "#141414", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"></circle></svg></a>
+              <a href="https://www.youtube.com/@araqahrecruitmentoffice1344" target="_blank" rel="noopener noreferrer" aria-label="Araqah on YouTube" title="Araqah on YouTube" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1.5px solid #141414", color: "#141414", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a>
+              <a href="https://www.facebook.com/araqah1" target="_blank" rel="noopener noreferrer" aria-label="Araqah on Facebook" title="Araqah on Facebook" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1.5px solid #141414", color: "#141414", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a></div>{" "}</div>{" "}
+          <div id="request" style={{ flex: "1 1 500px", minWidth: "0" }}>{" "}
+            <form style={{ padding: "32px", borderRadius: "24px", background: "#FFFFFF", border: "1px solid #E4DCCB", boxShadow: "0 24px 60px rgba(20,20,20,0.08)" }} ref={b.formRef} onSubmit={b.onSubmit} noValidate>{" "}
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
+                <h3 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "30px", fontWeight: "600", color: "#141414" }}>{"Request a worker"}</h3>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "6px 12px", borderRadius: "999px", background: "#F2ECDF", fontSize: "12px", fontWeight: "800", color: "#141414" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8.5"></circle>
+                    <path d="M12 7.5V12l3 2"></path></svg>{"Under a minute"}</span></div>{" "}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "14px", marginTop: "22px" }}>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Full name"}
+                  <input type="text" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="fullName" autoComplete="name" /></label>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Mobile number"}
+                  <input type="tel" placeholder="05XXXXXXXX" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="phone" autoComplete="tel" inputMode="tel" /></label>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"City"}
+                  <input type="text" placeholder="Riyadh" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="city" autoComplete="address-level2" /></label>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Service type"}
+                  <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="serviceType" defaultValue={b.defaultService}>{b.options.serviceType.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Required profession"}
+                  <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="profession">{b.options.profession.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}
+                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Required nationality"}
+                  <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="nationality">{b.options.nationality.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}</div>{" "}
+              <fieldset style={{ margin: "16px 0 0", padding: "0", border: "0" }}>
+                <legend style={{ padding: "0", marginBottom: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Preferred contact method"}</legend>
+                <div style={{ display: "flex", gap: "10px" }}>{" "}
+                  <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "44px", padding: "0 16px", borderRadius: "10px", border: "1.5px solid #141414", fontSize: "15px", fontWeight: "700", color: "#141414" }} className="radio-opt">
+                    <input type="radio" name="contact" defaultChecked style={{ accentColor: "#141414" }} value="call" />{"Call"}</label>{" "}
+                  <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "44px", padding: "0 16px", borderRadius: "10px", border: "1.5px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }} className="radio-opt">
+                    <input type="radio" name="contact" style={{ accentColor: "#141414" }} value="email" />{"Email"}</label>{" "}</div></fieldset>{" "}
+              <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414", marginTop: "16px" }}>{"Notes or special requests"}
+                <textarea rows={3} style={{ width: "100%", boxSizing: "border-box", padding: "12px 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit", resize: "vertical" }} name="notes"></textarea></label>{" "}
+              <button type="submit" style={{ marginTop: "20px", width: "100%", height: "54px", border: "0", borderRadius: "12px", background: "#F5C518", color: "#141414", fontSize: "16px", fontWeight: "800", fontFamily: "inherit", cursor: "pointer", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px" }} disabled={b.submitting}>{"Send request "}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              {b.formError && (<p role="alert" style={{ margin: "12px 0 0", fontSize: "14px", fontWeight: "700", color: "#B42318", textAlign: "center" }}>{b.formError}</p>)}{" "}
+              <p style={{ margin: "12px 0 0", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontSize: "13px", color: "#5C5A55" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="5" y="10.5" width="14" height="10" rx="2"></rect>
+                  <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></svg>{"You'll get a tracking number as soon as you submit."}</p>{" "}</form>{" "}</div>{" "}</div>{" "}</div>{" "}</section>
+  );
+}
+
+export function FooterEn({ b }: { b: SiteBindings }) {
+  return (
+    <footer style={{ background: "#0E0E0D", padding: "44px 0 22px" }}>{" "}
+      <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: "40px" }}>{" "}
+          <div style={{ minWidth: "0" }}>{" "}
+            <Image alt="Araqah Recruitment Co." style={{ width: "230px", maxWidth: "100%", height: "auto", display: "block" }} src="/images/araqah-logo-footer.png" width={230} height={115} />{" "}
+            <p style={{ margin: "20px 0 0", fontSize: "14px", lineHeight: "1.65", color: "#CFCAC0", maxWidth: "300px" }}>{"Araqah Recruitment Co.: a licensed company for recruiting trained domestic workers in Riyadh."}</p>{" "}</div>{" "}
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
+            <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Quick links"}</p>
+            <a href={b.to("#about")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"About"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Services"}</a>
+            <a href={b.to("#track")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Track Request"}</a>
+            <a href={b.to("#faq")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"FAQ"}</a>
+            <a href={b.to("#contact")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Contact"}</a></div>{" "}
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
+            <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Services"}</p>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Housemaid"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Private Driver"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Nanny"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Cook"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Caregiver"}</a>
+            <a href={b.to("#services")} style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Worker Transfer"}</a></div>{" "}
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
+            <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Contact"}</p>{" "}
+            <a href="tel:0112662266" style={{ color: "#FFFFFF", textDecoration: "none", fontSize: "18px", fontWeight: "800", padding: "3px 0" }}>
+              <bdi dir="ltr">{"011 266 2266"}</bdi></a>{" "}
+            <a href="mailto:info@araqah.com" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"info@araqah.com"}</a>{" "}
+            <p style={{ margin: "4px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#CFCAC0" }}>{"2533 Imam Saud bin Faisal Road, Hittin, Riyadh 13518"}</p>{" "}
+            <div style={{ marginTop: "10px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
+              <a href="https://x.com/Araqah1" target="_blank" rel="noopener noreferrer" aria-label="Araqah on X (@Araqah1)" title="Araqah on X (@Araqah1)" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #4A4843", color: "#FFFFFF", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a>
+              <a href="https://www.instagram.com/araqah.1/" target="_blank" rel="noopener noreferrer" aria-label="Araqah on Instagram (@araqah.1)" title="Araqah on Instagram (@araqah.1)" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #4A4843", color: "#FFFFFF", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"></circle></svg></a>
+              <a href="https://www.youtube.com/@araqahrecruitmentoffice1344" target="_blank" rel="noopener noreferrer" aria-label="Araqah on YouTube" title="Araqah on YouTube" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #4A4843", color: "#FFFFFF", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a>
+              <a href="https://www.facebook.com/araqah1" target="_blank" rel="noopener noreferrer" aria-label="Araqah on Facebook" title="Araqah on Facebook" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #4A4843", color: "#FFFFFF", textDecoration: "none", boxSizing: "border-box" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a></div>{" "}</div>{" "}</div>{" "}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "16px", marginTop: "28px", paddingTop: "18px", borderTop: "1px solid #2B2A27", fontSize: "13px", color: "#A9A397" }}>{" "}
+          <p style={{ margin: "0" }}>{"License No. "}
+            <bdi dir="ltr">{"3701173"}</bdi></p>{" "}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "18px" }}>
+            <a href="/en/privacy-policy" style={{ color: "#CFCAC0" }}>{"Privacy Policy"}</a>
+            <a href="/en/terms-and-conditions" style={{ color: "#CFCAC0" }}>{"Terms & Conditions"}</a>
+            <a href="/en/refund-policy" style={{ color: "#CFCAC0" }}>{"Replacement & Refund Policy"}</a></div>{" "}</div>{" "}
+        <p style={{ margin: "14px 0 0", fontSize: "13px", color: "#A9A397" }}>{"© 2026 Araqah Recruitment Co. All rights reserved."}</p>{" "}</div>{" "}</footer>
+  );
+}
 
 export default function LandingEn({ b }: { b: LandingBindings }) {
   return (
     <div style={{ fontFamily: "'Manrope', system-ui, sans-serif", color: "#141414", background: "#FAF7F0", minWidth: "0" }}>{" "}
-      <header style={{ position: "sticky", top: "0", zIndex: "20", background: "rgba(250,247,240,0.94)", backdropFilter: "blur(10px)", borderBottom: "1px solid #E4DCCB" }} className="site-header" data-menu={b.menuOpen ? "open" : "closed"} onClick={b.onHeaderClick}>{" "}
-        <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "16px 28px", minHeight: "80px", paddingTop: "10px", paddingBottom: "10px" }} className="site-bar">{" "}
-          <a href="#top" aria-label="Araqah Recruitment Office, home" style={{ display: "flex", alignItems: "center" }}>
-            <Image alt="Araqah" style={{ height: "46px", width: "auto", display: "block" }} src="/images/araqah-logo.png" width={128} height={46} priority /></a>
-          <button type="button" className="site-menu-btn" aria-expanded={b.menuOpen} aria-controls="site-nav" aria-label={b.menuLabel} onClick={b.toggleMenu} style={{ alignItems: "center", justifyContent: "center", width: "44px", height: "44px", padding: "0", borderRadius: "10px", border: "1.5px solid #141414", background: "transparent", color: "#141414", cursor: "pointer" }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              {b.menuOpen ? <path d="M6 6l12 12M18 6L6 18"></path> : <path d="M4 7h16M4 12h16M4 17h16"></path>}
-            </svg>
-          </button>{" "}
-          <nav aria-label="Main" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px 24px", fontSize: "14px", fontWeight: "600" }} className="site-nav" id="site-nav">{" "}
-            <a href="#top" style={{ color: "#141414", textDecoration: "none", padding: "8px 0", boxShadow: "inset 0 -2px 0 #F5C518" }}>{"Home"}</a>{" "}
-            <a href="#about" style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"About"}</a>{" "}
-            <a href="#services" style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"Services"}</a>{" "}
-            <a href="#track" style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"Track Request"}</a>{" "}
-            <a href="#faq" style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"FAQ"}</a>{" "}
-            <a href="#contact" style={{ color: "#141414", textDecoration: "none", padding: "8px 0" }}>{"Contact"}</a>{" "}</nav>{" "}
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "16px" }} className="site-actions">{" "}
-            <a href={b.altLocaleHref} lang="ar" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif", fontSize: "15px", fontWeight: "600", color: "#141414", textDecoration: "none", padding: "8px 4px" }}>{"العربية"}</a>{" "}
-            <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: "700", color: "#141414", textDecoration: "none", padding: "8px 0" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>
-              <bdi dir="ltr">{"011 266 2266"}</bdi></a>{" "}
-            <a href="#request" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", textDecoration: "none", boxSizing: "border-box", minHeight: "46px", padding: "0 20px", fontSize: "14px" }}>{"Request a Worker"}</a>{" "}</div>{" "}</div>{" "}</header>{" "}
+      <HeaderEn b={b} />{" "}
       <section id="top" style={{ padding: "48px 0 44px" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "56px" }}>{" "}
           <div style={{ flex: "1 1 480px", minWidth: "0" }}>{" "}
             <p style={{ display: "inline-flex", alignItems: "center", gap: "10px", margin: "0 0 24px", padding: "8px 14px 8px 10px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "13px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#F5C518", boxShadow: "0 0 0 4px rgba(245,197,24,0.25)" }}></span>{"Licensed recruitment office · Riyadh"}</p>{" "}
+              <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", background: "#F5C518", boxShadow: "0 0 0 4px rgba(245,197,24,0.25)" }}></span>{"Licensed recruitment company · Riyadh"}</p>{" "}
             <h1 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "56px", lineHeight: "1.04", letterSpacing: "-0.03em", color: "#141414" }}>{"Trusted domestic workers, recruited with "}
               <span style={{ background: "linear-gradient(transparent 62%, #F5C518 62%, #F5C518 92%, transparent 92%)" }}>{"care"}</span>{" for your family"}</h1>{" "}
             <p style={{ margin: "24px 0 0", fontSize: "18px", lineHeight: "1.6", color: "#3D3D3D", maxWidth: "560px" }}>{"From choosing the profession and nationality to your worker's arrival in the Kingdom, the Araqah team is with you at every step. Follow your request online at any time."}</p>{" "}
@@ -49,11 +256,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
               <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", fontWeight: "600", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "50%", background: "#141414", color: "#F5C518" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{"Officially licensed office"}</div>{" "}
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", fontWeight: "600", color: "#141414" }}>
-                <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "50%", background: "#141414", color: "#F5C518" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{"10 nationalities"}</div>{" "}
+                    <path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{"Officially licensed company"}</div>{" "}
               <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", fontWeight: "600", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "50%", background: "#141414", color: "#F5C518" }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -63,7 +266,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{"Secure payment with mada & Apple Pay"}</div>{" "}</div>{" "}</div>{" "}
           <div style={{ flex: "1 1 460px", minWidth: "0", position: "relative" }}>{" "}
-            <Image alt="Two Araqah housemaids cleaning a family living room" style={{ display: "block", width: "100%", objectFit: "cover", height: "500px", borderRadius: "28px", objectPosition: "60% center" }} src="/images/hero-housemaids.jpg" width={820} height={461} sizes="(max-width: 1100px) 100vw, 620px" priority />{" "}
+            <Image alt="Two Araqah housemaids cleaning a family living room" style={{ display: "block", width: "100%", objectFit: "cover", height: "500px", borderRadius: "28px", objectPosition: "60% center" }} src="/images/hero-living-room.jpg" width={1300} height={730} sizes="(max-width: 1100px) 100vw, 620px" priority />{" "}
             <div style={{ position: "absolute", left: "-24px", bottom: "40px", width: "300px", maxWidth: "86%", background: "#FFFFFF", borderRadius: "18px", padding: "20px", boxShadow: "0 24px 60px rgba(20,20,20,0.18)", boxSizing: "border-box" }}>{" "}
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "40px", height: "40px", borderRadius: "10px", background: "#F5C518", color: "#141414" }}>
@@ -90,41 +293,44 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                 <path d="M9 12l2.2 2.2L15.5 10"></path></svg>
               <div>
                 <p style={{ margin: "0", fontSize: "13px", fontWeight: "800" }}>{"Officially licensed"}</p>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", fontWeight: "600" }}>
-                  <bdi dir="ltr">{"SAU100000011004"}</bdi></p></div></div>{" "}</div>{" "}</div>{" "}</section>{" "}
+                <p style={{ margin: "2px 0 0", fontSize: "12px", fontWeight: "600" }}>{"License No. "}
+                  <bdi dir="ltr">{"3701173"}</bdi></p></div></div>{" "}</div>{" "}</div>{" "}</section>{" "}
       <section aria-label="Araqah in numbers" style={{ padding: "0 0 72px" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", background: "#141414", borderRadius: "22px", overflow: "hidden" }}>{" "}
             <div style={{ padding: "20px 32px" }}>
-              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>
-                <span className="ph">{"[X]"}</span>{"+"}</p>
+              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>{"10+"}</p>
               <p style={{ margin: "10px 0 0", fontSize: "15px", fontWeight: "600", color: "#E9E5DC" }}>{"years of experience"}</p></div>{" "}
             <div style={{ borderLeft: "1px solid rgba(255,255,255,0.12)", padding: "20px 32px" }}>
-              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>
-                <span className="ph">{"[X,XXX]"}</span>{"+"}</p>
+              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>{"9,000+"}</p>
               <p style={{ margin: "10px 0 0", fontSize: "15px", fontWeight: "600", color: "#E9E5DC" }}>{"families served"}</p></div>{" "}
-            <div style={{ borderLeft: "1px solid rgba(255,255,255,0.12)", padding: "20px 32px" }}>
-              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>{"10"}</p>
-              <p style={{ margin: "10px 0 0", fontSize: "15px", fontWeight: "600", color: "#E9E5DC" }}>{"source countries"}</p></div>{" "}
             <div style={{ borderLeft: "1px solid rgba(255,255,255,0.12)", padding: "20px 32px" }}>
               <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1", color: "#F5C518" }}>{"7"}</p>
               <p style={{ margin: "10px 0 0", fontSize: "15px", fontWeight: "600", color: "#E9E5DC" }}>{"domestic professions"}</p></div>{" "}</div></div></section>{" "}
       <section id="about" style={{ padding: "48px 0", background: "#FFFFFF", borderTop: "1px solid #E4DCCB", borderBottom: "1px solid #E4DCCB" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexWrap: "wrap", gap: "56px", alignItems: "center" }}>{" "}
           <div style={{ flex: "1 1 440px", minWidth: "0", position: "relative" }}>{" "}
-            <Image alt="The Araqah support team answering family calls" style={{ display: "block", width: "100%", objectFit: "cover", height: "480px", borderRadius: "24px", objectPosition: "center 30%" }} src="/images/support-team.jpg" width={500} height={750} sizes="(max-width: 1100px) 100vw, 600px" />{" "}
+            <Image alt="The Araqah support team answering family calls" style={{ display: "block", width: "100%", objectFit: "cover", height: "480px", borderRadius: "24px", objectPosition: "center 30%" }} src="/images/about-team.jpg" width={1300} height={682} sizes="(max-width: 1100px) 100vw, 600px" />{" "}
             <div style={{ position: "absolute", right: "20px", bottom: "20px", display: "inline-flex", alignItems: "center", gap: "10px", padding: "12px 16px", borderRadius: "12px", background: "#141414", color: "#FFFFFF", fontSize: "13px", fontWeight: "700" }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5C518" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M12 3l8 3v6c0 4.6-3.4 8-8 9-4.6-1-8-4.4-8-9V6z"></path>
-                <path d="M9 12l2.2 2.2L15.5 10"></path></svg>{"Licence ID "}
-              <bdi dir="ltr">{"SAU100000011004"}</bdi></div>{" "}</div>{" "}
+                <path d="M9 12l2.2 2.2L15.5 10"></path></svg>{"License No. "}
+              <bdi dir="ltr">{"3701173"}</bdi></div>{" "}</div>{" "}
           <div style={{ flex: "1 1 480px", minWidth: "0" }}>{" "}
             <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"About us"}</p>{" "}
             <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "720px" }}>{"Deep-rooted trust, modern service"}</h2>{" "}
-            <p style={{ margin: "22px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Araqah Recruitment Office is an officially licensed Saudi recruitment office based in Hittin, Riyadh. We specialise in recruiting trained domestic workers for families across the Kingdom."}</p>{" "}
+            <p style={{ margin: "22px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Araqah Recruitment Co. is an officially licensed Saudi recruitment company based in Hittin, Riyadh. We specialise in recruiting trained domestic workers for families across the Kingdom."}</p>{" "}
             <p style={{ margin: "14px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"We believe a family's comfort starts with choosing the right person. That is why we work with accredited partner agencies in 10 countries to bring you qualified workers through clear, regulated procedures at competitive prices."}</p>{" "}
             <p style={{ margin: "14px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Our name, "}
-              <em>{"Araqah"}</em>{", means heritage and deep roots. It reflects how we work: honest dealings, commitments kept, and a team that stays with you after the contract is signed."}</p>{" "}</div></div></section>{" "}
+              <em>{"Araqah"}</em>{", means heritage and deep roots. It reflects how we work: honest dealings, commitments kept, and a team that stays with you after the contract is signed."}</p>{" "}
+            <div style={{ marginTop: "22px", display: "flex", gap: "16px", padding: "18px 20px", borderRadius: "16px", background: "#FAF7F0", border: "1px solid #E4DCCB" }}>
+              <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 3l8 3v6c0 4.6-3.4 8-8 9-4.6-1-8-4.4-8-9V6z"></path>
+                  <path d="M9 12l2.2 2.2L15.5 10"></path></svg></span>
+              <div style={{ minWidth: "0" }}>
+                <h3 style={{ margin: "0", fontSize: "16px", fontWeight: "800", color: "#141414" }}>{"Certification / Licensing Details"}</h3>
+                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.6", color: "#3D3D3D" }}>{"Araqah Recruitment Co. is a Saudi company licensed by the Ministry of Human Resources and Social Development (MHRSD) under License No. 3701173. The company provides its services through the Musaned platform in accordance with the applicable laws and regulations of the Kingdom of Saudi Arabia, with a commitment to transparency and protecting the rights of all parties."}</p></div></div>{" "}</div></div></section>{" "}
       <section id="mission" style={{ padding: "48px 0", background: "#F2ECDF" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: "24px" }}>{" "}
@@ -155,7 +361,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                 <div>
                   <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"02"}</p>
                   <h3 style={{ margin: "2px 0 0", fontSize: "22px", fontWeight: "800", color: "#FFFFFF" }}>{"Our vision"}</h3></div></div>{" "}
-              <p style={{ position: "relative", margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "28px", fontWeight: "500", lineHeight: "1.3", color: "#FFFFFF" }}>{"To be the recruitment office families in the Kingdom trust and recommend first."}</p>{" "}</div>{" "}</div>{" "}
+              <p style={{ position: "relative", margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "28px", fontWeight: "500", lineHeight: "1.3", color: "#FFFFFF" }}>{"To be the recruitment company families in the Kingdom trust and recommend first."}</p>{" "}</div>{" "}</div>{" "}
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px 0", marginTop: "20px", padding: "18px 24px", borderRadius: "20px", background: "#FFFFFF", border: "1px solid #E4DCCB" }}>{" "}
             <p style={{ margin: "0 24px 0 0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#7A5D00" }}>{"Our values"}</p>{" "}
             <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0 24px", fontSize: "15px", fontWeight: "800", color: "#141414" }}>
@@ -184,130 +390,45 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
               <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"Our services"}</p>
               <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "720px" }}>{"The right person for every need in your home"}</h2></div>{" "}
             <p style={{ margin: "0", maxWidth: "400px", fontSize: "16px", lineHeight: "1.65", color: "#3D3D3D" }}>{"Choose the profession you need, and we will find a trained, qualified candidate who suits your family."}</p>{" "}</div>{" "}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: "18px", marginTop: "32px" }}>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Housemaid" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/housemaid.jpg" width={612} height={408} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Housemaid"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Daily cleaning, tidying and upkeep to keep your home comfortable."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Male Domestic Worker" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/male-worker.jpg" width={927} height={509} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Male Domestic Worker"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Household, garden and general maintenance tasks."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Private Driver" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/driver.jpg" width={1125} height={750} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Private Driver"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Safe, punctual trips for school runs, errands and family outings."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Nanny" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/nanny.jpg" width={678} height={452} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Nanny"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Caring attention for your children and their daily routine."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Caregiver" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/caregiver.jpg" width={652} height={471} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Caregiver"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Patient support for elderly family members with their daily needs."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Cook" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/cook.jpg" width={1280} height={853} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Cook"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Home-cooked meals prepared the way your family likes them."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", borderRadius: "18px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-              <Image alt="Special Needs Caregiver" style={{ display: "block", width: "100%", objectFit: "cover", height: "156px" }} src="/images/special-needs.jpg" width={1000} height={667} sizes="(max-width: 700px) 100vw, 320px" />{" "}
-              <div style={{ display: "flex", flexDirection: "column", flexGrow: "1", padding: "20px 22px 18px" }}>{" "}
-                <h3 style={{ margin: "0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Special Needs Caregiver"}</h3>{" "}
-                <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Dedicated, specialised care with compassion and patience."}</p>{" "}
-                <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "24px", padding: "26px", borderRadius: "18px", background: "#F5C518" }}>{" "}
-              <p style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "26px", fontWeight: "600", lineHeight: "1.2", color: "#141414" }}>{"Not sure which profession fits your home?"}</p>{" "}
-              <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box", alignSelf: "flex-start" }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>{"Call "}
-                <bdi dir="ltr">{"011 266 2266"}</bdi></a>{" "}</div>{" "}</div>{" "}
-          <div style={{ marginTop: "22px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", borderRadius: "22px", background: "#FFFFFF", border: "1px solid #E4DCCB", overflow: "hidden" }}>{" "}
-            <div style={{ display: "flex", flexDirection: "column", padding: "26px 26px 20px" }}>{" "}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "12px", background: "#F5C518", color: "#141414" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <circle cx="10" cy="8" r="4"></circle>
-                    <path d="M3 20a7 7 0 0 1 14 0"></path>
-                    <path d="M19 8v6M16 11h6"></path></svg></span>
-                <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 01"}</span></div>{" "}
-              <h3 style={{ margin: "18px 0 0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Worker Recruitment"}</h3>{" "}
-              <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Full recruitment through official channels, from candidate selection to arrival."}</p>{" "}
-              <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}
-            <div style={{ borderLeft: "1px solid #E4DCCB", display: "flex", flexDirection: "column", padding: "26px 26px 20px" }}>{" "}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "12px", background: "#F5C518", color: "#141414" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M4 8h14l-3-3"></path>
-                    <path d="M20 16H6l3 3"></path></svg></span>
-                <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 02"}</span></div>{" "}
-              <h3 style={{ margin: "18px 0 0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Worker Transfer"}</h3>{" "}
-              <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Transfer a domestic worker's services to your name through official procedures."}</p>{" "}
-              <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}
-            <div style={{ borderLeft: "1px solid #E4DCCB", display: "flex", flexDirection: "column", padding: "26px 26px 20px" }}>{" "}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "12px", background: "#F5C518", color: "#141414" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                    <circle cx="9" cy="11" r="2.2"></circle>
-                    <path d="M5.8 16a3.4 3.4 0 0 1 6.4 0"></path>
-                    <path d="M14.5 10h4M14.5 13.5h3"></path></svg></span>
-                <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 03"}</span></div>{" "}
-              <h3 style={{ margin: "18px 0 0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Named Worker (Maarofa)"}</h3>{" "}
-              <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Already know the worker you want? We handle the procedures to recruit them by name."}</p>{" "}
-              <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}
-            <div style={{ borderLeft: "1px solid #E4DCCB", display: "flex", flexDirection: "column", padding: "26px 26px 20px" }}>{" "}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "12px", background: "#F5C518", color: "#141414" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M7 3h7l5 5v13H7z"></path>
-                    <path d="M14 3v5h5"></path>
-                    <path d="M10 13l2 2 3.5-3.5"></path></svg></span>
-                <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 04"}</span></div>{" "}
-              <h3 style={{ margin: "18px 0 0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Contract Authentication"}</h3>{" "}
-              <p style={{ margin: "6px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#3D3D3D", flexGrow: "1" }}>{"Authenticate the employment contract officially to protect both parties' rights."}</p>{" "}
-              <a href="#request" style={{ marginTop: "12px", padding: "8px 0", fontSize: "14px", fontWeight: "800", color: "#141414", textDecoration: "none" }}>{"Request this service →"}</a>{" "}</div>{" "}</div></div></section>{" "}
-      <section id="nationalities" style={{ padding: "48px 0", background: "#F2ECDF" }}>{" "}
-        <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>{" "}
-          <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"Nationalities"}</p>
-          <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "640px" }}>{"Choose from 10 nationalities"}</h2>{" "}
-          <p style={{ margin: "14px 0 0", maxWidth: "520px", fontSize: "16px", lineHeight: "1.65", color: "#3D3D3D" }}>{"We work with accredited partner agencies in each country to bring you trained workers."}</p>{" "}
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px", marginTop: "32px", maxWidth: "1040px" }}>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"PH"}</span>{"Philippines"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"ID"}</span>{"Indonesia"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"LK"}</span>{"Sri Lanka"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"IN"}</span>{"India"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"NP"}</span>{"Nepal"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"BD"}</span>{"Bangladesh"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"KE"}</span>{"Kenya"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"UG"}</span>{"Uganda"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"ET"}</span>{"Ethiopia"}</span>{" "}
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "7px 18px 7px 7px", borderRadius: "999px", background: "#FFFFFF", border: "1px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "50%", background: "#141414", fontSize: "11px", fontWeight: "800", color: "#F5C518" }}>{"GH"}</span>{"Ghana"}</span>{" "}</div>{" "}
-          <p style={{ margin: "22px 0 0", display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#5C5A55" }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="8.5"></circle>
-              <path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z"></path></svg>{"Availability, prices and timelines vary by nationality and current regulations."}</p>{" "}</div>{" "}</section>{" "}
+<div className="svc-slider" style={{ marginTop: "32px" }} onMouseEnter={b.slider.pause} onMouseLeave={b.slider.resume} onFocus={b.slider.pause} onBlur={b.slider.resume}>
+  <div className="svc-track" ref={b.slider.ref} onScroll={b.slider.onScroll} onTouchStart={b.slider.touch} role="group" aria-roledescription="carousel" aria-label={b.slider.labels.region} tabIndex={0}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", overflow: "hidden", background: "#FFFFFF", border: "1px solid #E4DCCB", borderRadius: "22px" }} className="svc-slide">{" "}
+                  <div style={{ position: "relative", minWidth: "0", minHeight: "280px" }}>
+                    <Image alt="An Araqah worker cleaning an elegant family living room" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", display: "block" }} src="/images/elegant-living-room.jpg" width={1300} height={714} sizes="(max-width: 700px) 100vw, 640px" /></div>{" "}
+                  <div style={{ minWidth: "0", display: "flex", flexDirection: "column", padding: "34px 36px" }}>{" "}
+                    <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 01"}</span>{" "}
+                    <h3 style={{ margin: "12px 0 0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "30px", fontWeight: "600", lineHeight: "1.2", color: "#141414" }}>{"Recruitment Services"}</h3>{" "}
+                    <p style={{ margin: "14px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D", flexGrow: "1" }}>{"Araqah Recruitment Co. provides domestic worker recruitment services across a wide range of nationalities and professions, tailored to clients' needs and preferences. Through our network of authorized international recruitment partners, we ensure transparent procedures, continuous application follow-up, and dedicated customer support throughout the recruitment process."}</p>{" "}
+                    <div style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", gap: "12px" }}>
+                      <a href="#request" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#F5C518", color: "#141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Request this service"}</a>
+                      <a href="/en/services/recruitment" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Read more"}</a></div>{" "}</div>{" "}</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", overflow: "hidden", background: "#FFFFFF", border: "1px solid #E4DCCB", borderRadius: "22px" }} className="svc-slide">{" "}
+                  <div style={{ position: "relative", minWidth: "0", minHeight: "280px" }}>
+                    <Image alt="A family welcomed by an Araqah worker serving tea beside a pool" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", display: "block" }} src="/images/family-pool.jpg" width={1300} height={866} sizes="(max-width: 700px) 100vw, 640px" /></div>{" "}
+                  <div style={{ minWidth: "0", display: "flex", flexDirection: "column", padding: "34px 36px" }}>{" "}
+                    <span style={{ fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", color: "#5C5A55" }}>{"SERVICE 02"}</span>{" "}
+                    <h3 style={{ margin: "12px 0 0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "30px", fontWeight: "600", lineHeight: "1.2", color: "#141414" }}>{"Domestic Worker Leasing Services"}</h3>{" "}
+                    <p style={{ margin: "14px 0 0", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D", flexGrow: "1" }}>{"Araqah Recruitment Co. offers flexible domestic worker leasing solutions designed to meet clients' varying needs. We provide convenient contractual options in accordance with applicable regulations, with a commitment to reliable service, continuous support, and customer satisfaction."}</p>{" "}
+                    <div style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", gap: "12px" }}>
+                      <a href="#request" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#F5C518", color: "#141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Request this service"}</a>
+                      <a href="/en/services/leasing" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Read more"}</a></div>{" "}</div>{" "}</div>
+  </div>
+  <div className="svc-controls">
+    <div className="svc-dots">
+      {Array.from({ length: b.slider.pages }, (_, i) => (
+        <button key={i} type="button" className="svc-dot" aria-label={b.slider.labels.dot(i + 1)} aria-current={b.slider.page === i} onClick={() => b.slider.go(i)} />
+      ))}
+    </div>
+    <div className="svc-arrows">
+      <button type="button" className="svc-arrow" aria-label={b.slider.labels.prev} onClick={b.slider.prev}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <button type="button" className="svc-arrow" aria-label={b.slider.labels.next} onClick={b.slider.next}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</div>{" "}</div></section>{" "}{" "}
       <section id="how" style={{ padding: "48px 0" }}>{" "}
         <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: "24px" }}>{" "}
@@ -355,7 +476,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <path d="M9 12l2.2 2.2L15.5 10"></path></svg></span>
               <div>
                 <h3 style={{ margin: "2px 0 0", fontSize: "18px", fontWeight: "800", color: "#141414" }}>{"Licensed & regulated"}</h3>
-                <p style={{ margin: "6px 0 0", fontSize: "15px", lineHeight: "1.55", color: "#3D3D3D" }}>{"An officially licensed office. Every contract is official and documented."}</p></div></div>{" "}
+                <p style={{ margin: "6px 0 0", fontSize: "15px", lineHeight: "1.55", color: "#3D3D3D" }}>{"An officially licensed company. Every contract is official and documented."}</p></div></div>{" "}
             <div style={{ display: "flex", gap: "18px", padding: "24px 0", borderBottom: "1px solid #E4DCCB" }}>
               <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "50%", border: "1.5px solid #141414", color: "#141414" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -535,9 +656,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", border: "1.5px solid #141414", boxSizing: "border-box", color: "#141414" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 0 && (<>
-                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"It depends on the nationality and profession, usually between "}
-                  <span className="ph">{"[X]"}</span>{" and "}
-                  <span className="ph">{"[Y]"}</span>{" days. You can follow every stage on the tracking page."}</p></>)}{" "}</div>{" "}
+                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"It depends on the nationality and profession. You can follow every stage on the tracking page."}</p></>)}{" "}</div>{" "}
             <div style={{ borderBottom: "1px solid #D6CCB8" }}>{" "}
               <button type="button" onClick={() => b.toggleFaq(1)} aria-expanded={b.faqOpen === 1} style={{ width: "100%", display: "flex", alignItems: "center", gap: "18px", minHeight: "60px", padding: "13px 0", border: "0", background: "transparent", textAlign: "left", fontFamily: "inherit", cursor: "pointer", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", width: "30px", fontSize: "13px", fontWeight: "800", color: "#7A5D00" }}>{"02"}</span>
@@ -548,8 +667,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", border: "1.5px solid #141414", boxSizing: "border-box", color: "#141414" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 1 && (<>
-                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>
-                  <span className="ph">{"[A copy of your national ID or Iqama. Confirm the full list with the client.]"}</span>{" Our team will guide you through everything."}</p></>)}{" "}</div>{" "}
+                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Our team will guide you through everything you need."}</p></>)}{" "}</div>{" "}
             <div style={{ borderBottom: "1px solid #D6CCB8" }}>{" "}
               <button type="button" onClick={() => b.toggleFaq(2)} aria-expanded={b.faqOpen === 2} style={{ width: "100%", display: "flex", alignItems: "center", gap: "18px", minHeight: "60px", padding: "13px 0", border: "0", background: "transparent", textAlign: "left", fontFamily: "inherit", cursor: "pointer", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", width: "30px", fontSize: "13px", fontWeight: "800", color: "#7A5D00" }}>{"03"}</span>
@@ -560,7 +678,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", border: "1.5px solid #141414", boxSizing: "border-box", color: "#141414" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 2 && (<>
-                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Yes. We send you CVs of suitable candidates so you can choose. If you already know a specific worker, use our Maarofa (named worker) service."}</p></>)}{" "}</div>{" "}
+                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Yes. We send you CVs of suitable candidates so you can choose. If you already know a specific worker, use our Maarofa (requested worker) service."}</p></>)}{" "}</div>{" "}
             <div style={{ borderBottom: "1px solid #D6CCB8" }}>{" "}
               <button type="button" onClick={() => b.toggleFaq(3)} aria-expanded={b.faqOpen === 3} style={{ width: "100%", display: "flex", alignItems: "center", gap: "18px", minHeight: "60px", padding: "13px 0", border: "0", background: "transparent", textAlign: "left", fontFamily: "inherit", cursor: "pointer", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", width: "30px", fontSize: "13px", fontWeight: "800", color: "#7A5D00" }}>{"04"}</span>
@@ -604,20 +722,19 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", border: "1.5px solid #141414", boxSizing: "border-box", color: "#141414" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 6 && (<>
-                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"You are protected by the guarantee terms in the unified official contract, including "}
-                  <span className="ph">{"[replacement / refund within the trial period. Confirm the exact terms with the client.]"}</span></p></>)}{" "}</div>{" "}
+                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"You are protected by the guarantee terms in the recruitment contract approved through Musaned. Standard recruitment is covered by a guarantee period of ninety (90) days, during which you may request a replacement or a refund of eligible recruitment fees in cases covered by the contractual guarantee. The Maarofa service does not include a guarantee or trial period. Read our full "}
+                  <a href="/en/refund-policy" style={{ fontWeight: "700" }}>{"Replacement & Refund Policy"}</a>{"."}</p></>)}{" "}</div>{" "}
             <div style={{ borderBottom: "1px solid #D6CCB8" }}>{" "}
               <button type="button" onClick={() => b.toggleFaq(7)} aria-expanded={b.faqOpen === 7} style={{ width: "100%", display: "flex", alignItems: "center", gap: "18px", minHeight: "60px", padding: "13px 0", border: "0", background: "transparent", textAlign: "left", fontFamily: "inherit", cursor: "pointer", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", width: "30px", fontSize: "13px", fontWeight: "800", color: "#7A5D00" }}>{"08"}</span>
-                <span style={{ flexGrow: "1", fontSize: "18px", fontWeight: "800", lineHeight: "1.35" }}>{"Is Araqah a licensed office?"}</span>{b.faqOpen === 7 && (<>
+                <span style={{ flexGrow: "1", fontSize: "18px", fontWeight: "800", lineHeight: "1.35" }}>{"Is Araqah a licensed company?"}</span>{b.faqOpen === 7 && (<>
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", background: "#141414", color: "#F5C518" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M5 12h14"></path></svg></span></>)}{b.faqOpen !== 7 && (<>
                   <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "50%", border: "1.5px solid #141414", boxSizing: "border-box", color: "#141414" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 7 && (<>
-                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Yes. Araqah is an officially licensed recruitment office (Licence ID "}
-                  <bdi dir="ltr">{"SAU100000011004"}</bdi>{"), and all our contracts are official and documented."}</p></>)}{" "}</div>{" "}
+                <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Yes. Araqah Recruitment Co. is a Saudi company licensed by the Ministry of Human Resources and Social Development (MHRSD) under License No. 3701173. The company provides its services through the Musaned platform in accordance with the applicable laws and regulations of the Kingdom of Saudi Arabia, with a commitment to transparency and protecting the rights of all parties."}</p></>)}{" "}</div>{" "}
             <div style={{ borderBottom: "1px solid #D6CCB8" }}>{" "}
               <button type="button" onClick={() => b.toggleFaq(8)} aria-expanded={b.faqOpen === 8} style={{ width: "100%", display: "flex", alignItems: "center", gap: "18px", minHeight: "60px", padding: "13px 0", border: "0", background: "transparent", textAlign: "left", fontFamily: "inherit", cursor: "pointer", color: "#141414" }}>
                 <span style={{ flex: "0 0 auto", width: "30px", fontSize: "13px", fontWeight: "800", color: "#7A5D00" }}>{"09"}</span>
@@ -629,157 +746,7 @@ export default function LandingEn({ b }: { b: LandingBindings }) {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 5v14M5 12h14"></path></svg></span></>)}</button>{" "}{b.faqOpen === 8 && (<>
                 <p style={{ margin: "0", padding: "0 56px 24px 48px", fontSize: "16px", lineHeight: "1.7", color: "#3D3D3D" }}>{"Yes. We handle the transfer of a domestic worker's services to you through official procedures."}</p></>)}{" "}</div>{" "}</div></div></section>{" "}
-      <section id="contact" style={{ padding: "48px 0" }}>{" "}
-        <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "28px", padding: "36px 44px", borderRadius: "24px", background: "#141414", position: "relative", overflow: "hidden" }}>{" "}
-            <div style={{ position: "absolute", right: "-60px", top: "-130px", width: "200px", height: "200px", borderRadius: "50%", border: "36px solid #F5C518" }}></div>{" "}
-            <div style={{ position: "relative", flex: "1 1 420px", minWidth: "0" }}>
-              <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "40px", lineHeight: "1.08", color: "#FFFFFF" }}>{"Ready to bring comfort home?"}</h2>
-              <p style={{ margin: "12px 0 0", fontSize: "17px", lineHeight: "1.6", color: "#CFCAC0" }}>{"Send your request in under a minute, and our team will contact you shortly."}</p></div>{" "}
-            <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: "12px", paddingRight: "130px" }}>
-              <a href="#request" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#F5C518", color: "#141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>{"Request a Worker "}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-              <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box", color: "#FFFFFF", borderColor: "#FFFFFF" }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>{"Call us"}</a></div>{" "}</div>{" "}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "48px", marginTop: "44px" }}>{" "}
-            <div style={{ flex: "1 1 400px", minWidth: "0" }}>{" "}
-              <p style={{ margin: "0 0 14px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7A5D00" }}>{"Contact"}</p>
-              <h2 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontWeight: "600", fontSize: "44px", lineHeight: "1.08", letterSpacing: "-0.02em", color: "#141414", maxWidth: "720px" }}>{"We're here to help"}</h2>{" "}
-              <p style={{ margin: "16px 0 0", fontSize: "16px", lineHeight: "1.65", color: "#3D3D3D", maxWidth: "460px" }}>{"Visit our office, call us, or email us. We are happy to answer your questions."}</p>{" "}
-              <div style={{ display: "flex", flexDirection: "column", marginTop: "24px", borderTop: "1px solid #E4DCCB" }}>{" "}
-                <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
-                  <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path>
-                      <circle cx="12" cy="10" r="2.3"></circle></svg></span>
-                  <div style={{ minWidth: "0" }}>
-                    <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Address"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>{"2533 Imam Saud bin Faisal Road, Hittin, Riyadh 13518, Saudi Arabia"}</p></div></div>{" "}
-                <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
-                  <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg></span>
-                  <div style={{ minWidth: "0" }}>
-                    <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Unified number"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
-                      <a href="tel:0112662266" style={{ color: "inherit", textDecoration: "none" }}>
-                        <bdi dir="ltr">{"011 266 2266"}</bdi></a></p></div></div>{" "}
-                <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
-                  <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg></span>
-                  <div style={{ minWidth: "0" }}>
-                    <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Mobile"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
-                      <bdi dir="ltr">{"055 426 2255"}</bdi>{" · "}
-                      <bdi dir="ltr">{"055 426 2277"}</bdi>{" · "}
-                      <bdi dir="ltr">{"055 426 2288"}</bdi>{" · "}
-                      <bdi dir="ltr">{"056 888 8044"}</bdi></p></div></div>{" "}
-                <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
-                  <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                      <path d="M3.5 6.5l8.5 6 8.5-6"></path></svg></span>
-                  <div style={{ minWidth: "0" }}>
-                    <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Email"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>
-                      <a href="mailto:info@araqah.com" style={{ color: "inherit", textDecoration: "none" }}>{"info@araqah.com"}</a></p></div></div>{" "}
-                <div style={{ display: "flex", gap: "16px", padding: "14px 0", borderBottom: "1px solid #E4DCCB" }}>
-                  <span style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#141414", color: "#F5C518" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="8.5"></circle>
-                      <path d="M12 7.5V12l3 2"></path></svg></span>
-                  <div style={{ minWidth: "0" }}>
-                    <p style={{ margin: "0", fontSize: "12px", fontWeight: "800", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5C5A55" }}>{"Working hours"}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "15px", fontWeight: "600", lineHeight: "1.5", color: "#141414" }}>{"Sunday–Thursday, 9:00 AM – 9:00 PM"}</p></div></div>{" "}</div>{" "}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "24px" }}>{" "}
-                <a href="tel:0112662266" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "#141414", color: "#FFFFFF", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 3.5h3.5l2 5-2.4 1.5a11 11 0 0 0 5.9 5.9l1.5-2.4 5 2v3.5a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"></path></svg>{"Call us"}</a>{" "}
-                <a href="mailto:info@araqah.com" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                    <path d="M3.5 6.5l8.5 6 8.5-6"></path></svg>{"Email us"}</a>{" "}
-                <a href="https://maps.google.com/?q=2533+Imam+Saud+bin+Faisal+Road+Hittin+Riyadh" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "50px", padding: "0 24px", borderRadius: "10px", background: "transparent", color: "#141414", border: "1.5px solid #141414", fontWeight: "700", fontSize: "15px", textDecoration: "none", boxSizing: "border-box" }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path>
-                    <circle cx="12" cy="10" r="2.3"></circle></svg>{"Get directions"}</a>{" "}</div>{" "}
-              <p style={{ margin: "22px 0 0", fontSize: "14px", color: "#3D3D3D" }}>{"Follow us: X "}
-                <bdi dir="ltr">{"@Araqah1"}</bdi>{" · Instagram "}
-                <bdi dir="ltr">{"@araqah.1"}</bdi>{" · YouTube · Facebook"}</p>{" "}</div>{" "}
-            <div id="request" style={{ flex: "1 1 500px", minWidth: "0" }}>{" "}
-              <form style={{ padding: "32px", borderRadius: "24px", background: "#FFFFFF", border: "1px solid #E4DCCB", boxShadow: "0 24px 60px rgba(20,20,20,0.08)" }} ref={b.formRef} onSubmit={b.onSubmit} noValidate>{" "}
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-                  <h3 style={{ margin: "0", fontFamily: "'Fraunces', Georgia, serif", fontSize: "30px", fontWeight: "600", color: "#141414" }}>{"Request a worker"}</h3>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "6px 12px", borderRadius: "999px", background: "#F2ECDF", fontSize: "12px", fontWeight: "800", color: "#141414" }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="8.5"></circle>
-                      <path d="M12 7.5V12l3 2"></path></svg>{"Under a minute"}</span></div>{" "}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "14px", marginTop: "22px" }}>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Full name"}
-                    <input type="text" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="fullName" autoComplete="name" /></label>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Mobile number"}
-                    <input type="tel" placeholder="05XXXXXXXX" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="phone" autoComplete="tel" inputMode="tel" /></label>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"City"}
-                    <input type="text" placeholder="Riyadh" style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="city" autoComplete="address-level2" /></label>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Service type"}
-                    <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="serviceType">{b.options.serviceType.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Required profession"}
-                    <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="profession">{b.options.profession.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}
-                  <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Required nationality"}
-                    <select style={{ width: "100%", boxSizing: "border-box", height: "48px", padding: "0 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit" }} name="nationality">{b.options.nationality.map((o) => (<option key={o.code} value={o.code}>{o.label}</option>))}</select></label>{" "}</div>{" "}
-                <fieldset style={{ margin: "16px 0 0", padding: "0", border: "0" }}>
-                  <legend style={{ padding: "0", marginBottom: "8px", fontSize: "13px", fontWeight: "700", color: "#141414" }}>{"Preferred contact method"}</legend>
-                  <div style={{ display: "flex", gap: "10px" }}>{" "}
-                    <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "44px", padding: "0 16px", borderRadius: "10px", border: "1.5px solid #141414", fontSize: "15px", fontWeight: "700", color: "#141414" }} className="radio-opt">
-                      <input type="radio" name="contact" defaultChecked style={{ accentColor: "#141414" }} value="call" />{"Call"}</label>{" "}
-                    <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "44px", padding: "0 16px", borderRadius: "10px", border: "1.5px solid #E4DCCB", fontSize: "15px", fontWeight: "700", color: "#141414" }} className="radio-opt">
-                      <input type="radio" name="contact" style={{ accentColor: "#141414" }} value="email" />{"Email"}</label>{" "}</div></fieldset>{" "}
-                <label style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "13px", fontWeight: "700", color: "#141414", marginTop: "16px" }}>{"Notes or special requests"}
-                  <textarea rows={3} style={{ width: "100%", boxSizing: "border-box", padding: "12px 14px", borderRadius: "10px", border: "1.5px solid #E4DCCB", background: "#FAF7F0", color: "#141414", fontSize: "15px", fontFamily: "inherit", resize: "vertical" }} name="notes"></textarea></label>{" "}
-                <button type="submit" style={{ marginTop: "20px", width: "100%", height: "54px", border: "0", borderRadius: "12px", background: "#F5C518", color: "#141414", fontSize: "16px", fontWeight: "800", fontFamily: "inherit", cursor: "pointer", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px" }} disabled={b.submitting}>{"Send request "}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
-                {b.formError && (<p role="alert" style={{ margin: "12px 0 0", fontSize: "14px", fontWeight: "700", color: "#B42318", textAlign: "center" }}>{b.formError}</p>)}{" "}
-                <p style={{ margin: "12px 0 0", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontSize: "13px", color: "#5C5A55" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="5" y="10.5" width="14" height="10" rx="2"></rect>
-                    <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></svg>{"You'll get a tracking number as soon as you submit."}</p>{" "}</form>{" "}</div>{" "}</div>{" "}</div>{" "}</section>{" "}
-      <footer style={{ background: "#0E0E0D", padding: "44px 0 22px" }}>{" "}
-        <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 32px", boxSizing: "border-box" }}>{" "}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: "40px" }}>{" "}
-            <div style={{ minWidth: "0" }}>{" "}
-              <Image alt="Araqah Recruitment Office" style={{ width: "230px", maxWidth: "100%", height: "auto", display: "block" }} src="/images/araqah-logo-footer.png" width={230} height={115} />{" "}
-              <p style={{ margin: "20px 0 0", fontSize: "14px", lineHeight: "1.65", color: "#CFCAC0", maxWidth: "300px" }}>{"Araqah Recruitment Office: a licensed office for recruiting trained domestic workers in Riyadh."}</p>{" "}</div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
-              <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Quick links"}</p>
-              <a href="#about" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"About"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Services"}</a>
-              <a href="#track" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Track Request"}</a>
-              <a href="#faq" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"FAQ"}</a>
-              <a href="#contact" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Contact"}</a></div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
-              <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Services"}</p>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Housemaid"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Private Driver"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Nanny"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Cook"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Caregiver"}</a>
-              <a href="#services" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"Worker Transfer"}</a></div>{" "}
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px", minWidth: "0" }}>
-              <p style={{ margin: "0 0 6px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5C518" }}>{"Contact"}</p>{" "}
-              <a href="tel:0112662266" style={{ color: "#FFFFFF", textDecoration: "none", fontSize: "18px", fontWeight: "800", padding: "3px 0" }}>
-                <bdi dir="ltr">{"011 266 2266"}</bdi></a>{" "}
-              <a href="mailto:info@araqah.com" style={{ color: "#CFCAC0", textDecoration: "none", fontSize: "15px", padding: "3px 0" }}>{"info@araqah.com"}</a>{" "}
-              <p style={{ margin: "4px 0 0", fontSize: "14px", lineHeight: "1.55", color: "#CFCAC0" }}>{"2533 Imam Saud bin Faisal Road, Hittin, Riyadh 13518"}</p>{" "}
-              <p style={{ margin: "8px 0 0", fontSize: "14px", color: "#CFCAC0" }}>{"X "}
-                <bdi dir="ltr">{"@Araqah1"}</bdi>{" · Instagram "}
-                <bdi dir="ltr">{"@araqah.1"}</bdi></p>{" "}</div>{" "}</div>{" "}
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "16px", marginTop: "28px", paddingTop: "18px", borderTop: "1px solid #2B2A27", fontSize: "13px", color: "#A9A397" }}>{" "}
-            <p style={{ margin: "0" }}>{"Licence: "}
-              <bdi dir="ltr">{"SAU100000011004"}</bdi></p>{" "}{" "}</div>{" "}
-          <p style={{ margin: "14px 0 0", fontSize: "13px", color: "#A9A397" }}>{"© 2026 Araqah Recruitment Office. All rights reserved."}</p>{" "}</div>{" "}</footer>{" "}</div>
+      <ContactEn b={b} />{" "}
+      <FooterEn b={b} />{" "}</div>
   );
 }

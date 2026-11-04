@@ -51,8 +51,8 @@ export const TEMPLATES: TemplateDef[] = [
     variables: ["name", "trackingCode", "stage", "stageNumber", "note", "trackingUrl"],
     subject: { en: "Update on your request {{trackingCode}}: {{stage}}", ar: "تحديث على طلبك {{trackingCode}}: {{stage}}" },
     body: {
-      en: "Dear {{name}},\n\nYour request {{trackingCode}} has moved to stage {{stageNumber}} of 8: {{stage}}.\n\n{{note}}\n\nYou can follow every stage online, using your request number and mobile number:\n{{trackingUrl}}\n\nAraqah Recruitment Office\n011 266 2266",
-      ar: "عزيزنا {{name}}،\n\nانتقل طلبك {{trackingCode}} إلى المرحلة {{stageNumber}} من 8: {{stage}}.\n\n{{note}}\n\nيمكنك متابعة كل مرحلة إلكترونيًا باستخدام رقم الطلب ورقم الجوال:\n{{trackingUrl}}\n\nمكتب عراقة للاستقدام\n011 266 2266",
+      en: "Dear {{name}},\n\nYour request {{trackingCode}} has moved to stage {{stageNumber}} of 8: {{stage}}.\n\n{{note}}\n\nYou can follow every stage online, using your request number and mobile number:\n{{trackingUrl}}\n\nAraqah Recruitment Co.\n011 266 2266",
+      ar: "عزيزنا {{name}}،\n\nانتقل طلبك {{trackingCode}} إلى المرحلة {{stageNumber}} من 8: {{stage}}.\n\n{{note}}\n\nيمكنك متابعة كل مرحلة إلكترونيًا باستخدام رقم الطلب ورقم الجوال:\n{{trackingUrl}}\n\nشركة عراقة للاستقدام\n011 266 2266",
     },
   },
   {
@@ -63,8 +63,8 @@ export const TEMPLATES: TemplateDef[] = [
     variables: ["name", "amount", "description", "paymentLink", "expires"],
     subject: { en: "Your payment link from Araqah: {{amount}}", ar: "رابط الدفع من عراقة: {{amount}}" },
     body: {
-      en: "Dear {{name}},\n\nPlease use the secure link below to pay {{amount}} for: {{description}}.\n\n{{paymentLink}}\n\n{{expires}}\n\nYou can pay with mada, Visa or Mastercard. If you have any questions, call us on 011 266 2266.\n\nAraqah Recruitment Office",
-      ar: "عزيزنا {{name}}،\n\nيرجى استخدام الرابط الآمن أدناه لسداد مبلغ {{amount}} مقابل: {{description}}.\n\n{{paymentLink}}\n\n{{expires}}\n\nيمكنك الدفع عبر مدى أو فيزا أو ماستركارد. للاستفسار اتصل بنا على 011 266 2266.\n\nمكتب عراقة للاستقدام",
+      en: "Dear {{name}},\n\nPlease use the secure link below to pay {{amount}} for: {{description}}.\n\n{{paymentLink}}\n\n{{expires}}\n\nYou can pay with mada, Visa or Mastercard. If you have any questions, call us on 011 266 2266.\n\nAraqah Recruitment Co.",
+      ar: "عزيزنا {{name}}،\n\nيرجى استخدام الرابط الآمن أدناه لسداد مبلغ {{amount}} مقابل: {{description}}.\n\n{{paymentLink}}\n\n{{expires}}\n\nيمكنك الدفع عبر مدى أو فيزا أو ماستركارد. للاستفسار اتصل بنا على 011 266 2266.\n\nشركة عراقة للاستقدام",
     },
   },
   {
@@ -75,8 +75,8 @@ export const TEMPLATES: TemplateDef[] = [
     variables: ["name", "amount", "description", "reference", "paidAt"],
     subject: { en: "Payment received: thank you, {{name}}", ar: "تم استلام الدفعة: شكرًا {{name}}" },
     body: {
-      en: "Dear {{name}},\n\nThank you. We have received your payment of {{amount}} for: {{description}}.\n\nPayment reference: {{reference}}\nDate: {{paidAt}}\n\nAraqah Recruitment Office\n011 266 2266",
-      ar: "عزيزنا {{name}}،\n\nشكرًا لك. تم استلام دفعتك بمبلغ {{amount}} مقابل: {{description}}.\n\nمرجع الدفع: {{reference}}\nالتاريخ: {{paidAt}}\n\nمكتب عراقة للاستقدام\n011 266 2266",
+      en: "Dear {{name}},\n\nThank you. We have received your payment of {{amount}} for: {{description}}.\n\nPayment reference: {{reference}}\nDate: {{paidAt}}\n\nAraqah Recruitment Co.\n011 266 2266",
+      ar: "عزيزنا {{name}}،\n\nشكرًا لك. تم استلام دفعتك بمبلغ {{amount}} مقابل: {{description}}.\n\nمرجع الدفع: {{reference}}\nالتاريخ: {{paidAt}}\n\nشركة عراقة للاستقدام\n011 266 2266",
     },
   },
 ];
@@ -132,7 +132,7 @@ function htmlBody(text: string, rtl: boolean) {
 <table role="presentation" width="560" style="max-width:560px;background:#FFFFFF;border:1px solid #E4DCCB;border-radius:16px;overflow:hidden" cellpadding="0" cellspacing="0">
 <tr><td style="background:#141414;padding:18px 28px;color:#F5C518;font-size:20px;font-weight:700">Araqah &middot; عراقة</td></tr>
 <tr><td style="padding:28px;text-align:${rtl ? "right" : "left"}">${paragraphs}</td></tr>
-<tr><td style="padding:14px 28px;background:#F2ECDF;color:#5C5A55;font-size:12px;text-align:center">Araqah Recruitment Office &middot; Hittin, Riyadh &middot; info@araqah.com</td></tr>
+<tr><td style="padding:14px 28px;background:#F2ECDF;color:#5C5A55;font-size:12px;text-align:center">Araqah Recruitment Co. &middot; Hittin, Riyadh &middot; info@araqah.com</td></tr>
 </table></td></tr></table></body></html>`;
 }
 
@@ -144,7 +144,7 @@ export async function renderTemplate(key: TemplateKey, locale: "en" | "ar", vars
 }
 
 export const SAMPLE_VARS: Record<string, string> = {
-  name: "Mohammed Al-Harbi", phone: "+966551234567", city: "Riyadh", service: "Worker Recruitment", profession: "Housemaid", nationality: "Philippines",
+  name: "Mohammed Al-Harbi", phone: "+966551234567", city: "Riyadh", service: "Recruitment Services", profession: "Housemaid", nationality: "Philippines",
   contact: "Call", notes: "Prefer a candidate with nanny experience.", trackingCode: "ARQ-26-7K3Q9X", adminUrl: `${siteUrl()}/admin/requests/1`,
   stage: "Candidate Selected", stageNumber: "3", note: "We have shortlisted two CVs and will send them today.", trackingUrl: `${siteUrl()}/en#track`,
   amount: "SAR 1,500.00", description: "Recruitment service deposit", paymentLink: `${siteUrl()}/en/pay/PAY-26-ABC234`, expires: "This link is valid until 10 Nov 2026.",
